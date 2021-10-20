@@ -12,4 +12,4 @@ if (score == 80) { This a conditional statement that states if score is compared
 	result = "You did not pass. Try again!"; this is the block of code that prints if the conditions are false.
 }
 
-System.out.println(result);
+System.out.println(result);is used to print an argument that is passed to it. The result will print true in this case.
