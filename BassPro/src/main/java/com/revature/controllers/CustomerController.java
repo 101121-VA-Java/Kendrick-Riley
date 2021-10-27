@@ -1,5 +1,11 @@
 package com.revature.controllers;
 
-public class CustomerController {
+import com.revature.services.CustomerService;
 
+public class CustomerController {
+	private CustomerService us = new CustomerService();
+	
+	
 }
+
+

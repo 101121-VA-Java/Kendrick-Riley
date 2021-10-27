@@ -1,35 +1,27 @@
 package com.revature.repositories;
 
 import com.revature.models.Customer;
+import com.revature.models.Items;
 
-public class CustomerPostgres {
 
-	public class Customerpostgres implements CustomerDao{
+	public class CustomerPostgres implements CustomerDao{
 
-		public Customer[] getAllCustomers() {
+		@Override
+		public Items viewItems() {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
-		public Customer getCustomerById(int id) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public int addCustomer(Customer c) {
+		@Override
+		public double makeOffer() {
 			// TODO Auto-generated method stub
 			return 0;
 		}
 
-		public boolean editCustomer(Customer c) {
+		@Override
+		public double makePayment() {
 			// TODO Auto-generated method stub
-			return false;
-		}
-
-		public boolean deleteCustomer(int id) {
-			// TODO Auto-generated method stub
-			return false;
+			return 0;
 		}
 		
 	}
-}

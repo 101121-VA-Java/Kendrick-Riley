@@ -2,6 +2,14 @@ package com.revature;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+
+import com.revature.models.Customer;
+import com.revature.repositories.CustomerArray;
+import com.revature.repositories.CustomerDao;
+
 
 public class CustomerDaoTest {
 
@@ -25,12 +33,13 @@ public class CustomerDaoTest {
 		public void addCustomerVaild() {
 			Customer[] expected = {new Customer(0,"Liam", "Liam24","Peace"),
 					               new Customer(1, "Tris", "Tris24", "Love")};
+			
 			kr.addCustomer(new Customer(1, "Tris", "Tris24", "Love"));
 			
-					assertArrayEquals(expected, kr.getAllCustomers());
+			assertArrayEquals(expected, kr.getAllCustomers());
+			}
+		
 		
 		}
-		
-}
-		
+
 
