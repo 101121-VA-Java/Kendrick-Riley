@@ -6,7 +6,7 @@ import com.revature.repositories.EmployeeDao;
 
 public class EmployeeService {
 	
-	private EmployeeDao ed;
+	private static EmployeeDao ed = new EmployeeList();
 	
 	
 	public EmployeeService() {

@@ -7,12 +7,21 @@ public class Employee extends User{
 	private String name;
 	private String username;
 	private String password;
-	private Role role; // using an enum to store a specific value
+	private Role role; 
 	private Employee manager;
 	
 	public Employee() {
 		super();
 	}
+	
+
+	public Employee(String name, String username, String password) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
+	}
+
 
 	public Employee(int id, String name, String username, String password, Role role, Employee manager) {
 		super();
