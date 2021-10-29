@@ -1,6 +1,6 @@
 package com.revature.models;
 
-public class Customer extends User{
+public class Customer{
 	
 	private int id;
 	private String name;
@@ -9,6 +9,11 @@ public class Customer extends User{
 	
 	public Customer() {
 		super();
+	}
+	public Customer (int id) {
+		super();
+		this.id = id;
+		
 	}
 	public Customer(int id, String name, String username, String password) {
 		super();
@@ -38,7 +43,8 @@ public class Customer extends User{
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		 this.password = password;
+		
 	}
 	@Override
 	public String toString() {

@@ -2,7 +2,7 @@ package com.revature.models;
 
 import java.util.Objects;
 
-public class Employee extends User{
+public class Employee {
 	private int id;
 	private String name;
 	private String username;
@@ -12,6 +12,11 @@ public class Employee extends User{
 	
 	public Employee() {
 		super();
+	}
+	
+	public Employee(int id) {
+		super();
+		this.id = id;
 	}
 	
 
