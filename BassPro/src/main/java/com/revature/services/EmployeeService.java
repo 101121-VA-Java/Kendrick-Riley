@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.revature.daos.EmployeeDao;
 import com.revature.daos.EmployeeList;
+import com.revature.exception.LoginException;
 import com.revature.exception.UsernameAlreadyExistsException;
 import com.revature.models.Employee;
 import com.revature.models.Role;
@@ -16,8 +17,8 @@ public class EmployeeService {
 	
 	public Employee addEmployee(Employee e) throws UsernameAlreadyExistsException {
 		
-		Employee newEmp = this.getEmployeeByUsername(e.getUsername());
-		if(newEmp != null) {
+		Employee newHire = this.getEmployeeByUsername(e.getUsername());
+		if(newHire != null) {
 			throw new UsernameAlreadyExistsException();
 		}
 		e.setRole(Role.Basic_Employee);
@@ -36,6 +37,15 @@ public class EmployeeService {
 		}
 		
 		return null;
+	}
+
+
+	public Employee login(String username, String password) throws LoginException {
+		Employee emp = this.getEmployeeByUsername(username);
+		if(emp == null || !emp.getPassword().equals(password)) {
+			throw new LoginException();
+		}
+		return emp;
 	}
 	
 	
