@@ -2,7 +2,7 @@ package com.revature.models;
 
 import java.util.Objects;
 
-public class Employee extends UserLogin {
+public class Employee {
 	private int id;
 	private String name;
 	private String username;

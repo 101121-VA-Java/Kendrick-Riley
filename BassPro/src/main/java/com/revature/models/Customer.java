@@ -1,6 +1,6 @@
 package com.revature.models;
 
-public class Customer extends UserLogin{
+public class Customer{
 	
 	private int id;
 	private String name;
