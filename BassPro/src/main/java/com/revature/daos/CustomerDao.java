@@ -1,4 +1,4 @@
-package com.revature.repositories;
+package com.revature.daos;
 
 import com.revature.daos.GenericDao;
 import com.revature.models.Customer;

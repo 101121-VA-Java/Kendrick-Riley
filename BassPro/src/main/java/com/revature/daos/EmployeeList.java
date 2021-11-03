@@ -6,7 +6,7 @@ import java.util.List;
 import com.revature.models.Employee;
 import com.revature.models.Role;
 
-public class EmployeeList implements EmployeeDao {
+public class EmployeeList extends Employee implements EmployeeDao {
 	
 	private List<Employee> employees;
 	

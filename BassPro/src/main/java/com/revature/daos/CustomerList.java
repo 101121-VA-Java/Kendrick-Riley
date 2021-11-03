@@ -6,7 +6,7 @@ import java.util.List;
 import com.revature.models.Customer;
 import com.revature.repositories.CustomerDao;
 
-public class CustomerList implements CustomerDao{
+public class CustomerList extends Customer implements CustomerDao{
 
 	private List<Customer> customers = new ArrayList<>();
 	
