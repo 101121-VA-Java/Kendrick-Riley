@@ -3,14 +3,18 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.daos.CustomerDao;
+import com.revature.daos.CustomerList;
+import com.revature.exception.LoginException;
 import com.revature.exception.UsernameAlreadyExistsException;
 import com.revature.models.Customer;
-import com.revature.models.CustomerList;
-import com.revature.repositories.CustomerDao;
+
+
 
 public class CustomerService {
+	protected CustomerDao cd = new CustomerList();
 
-	private static CustomerDao cd = new CustomerList();
+	
 	
 	public Customer addCustomer(Customer c) throws UsernameAlreadyExistsException{
 		
@@ -18,7 +22,7 @@ public class CustomerService {
 		if(newCustomer != null) {
 			throw new UsernameAlreadyExistsException();
 		}
-		
+
 		return cd.add(c);
 	}
 
@@ -30,6 +34,13 @@ public class CustomerService {
 			}
 		}
 		return null;
+	}
+	public Customer login(String username, String password) throws LoginException {
+		Customer c = this.getCustomerByUsername(username);
+		if(c == null || !c.getPassword().equals(password)) {
+			throw new LoginException();
+		}
+		return c;
 	}
 	
 	

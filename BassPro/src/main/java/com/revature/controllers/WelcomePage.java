@@ -2,39 +2,53 @@ package com.revature.controllers;
 
 import java.util.Scanner;
 
+import com.revature.daos.ItemList;
+
 public class WelcomePage {
 	 static Scanner sc = new Scanner(System.in);
 		
 		protected static int choose;
 		
 		
-		public void welcomePage() {
+		public static void welcomePage() {
 			boolean run = true;
 			
 			do {
+				System.out.println();
 				System.out.println("***Greetings from Top Bass Pro Shop***");
-		        System.out.println("Select 1 to Login");
-		        System.out.println("Select 2 for Employee Menu");
-		        System.out.println("Select 3 for Customer Menu");
-		        System.out.println("Select 4 to exit");
+				System.out.println();
+		        System.out.println("Select 1: Login");
+		        System.out.println("Select 2: Register");
+		        System.out.println("Select 3: Exit");
 		        
 		        System.out.print("Enter selected option: ");
 				choose = sc.nextInt();
 
 		        switch (choose){
 		        case 1:
-		        	LoginController.logIn();
+		        	System.out.println("Please Login");
+		        	System.out.println();
+		        	LoginController.userLog();
+		        	
+	        	  
+	        	      
+	        	      run = false;
 		        	break;
 		            	
 		         case 2: 
-		        	EmployeeMenu.EmpMenu();
+		        	 System.out.println("Please Register");
+					 System.out.println();
+				
+					 
+		        	
 		       		break;		          
 		     
 		         case 3:
 		        	 System.out.println("Program Exited!");
 		        	 run = false;
 		        	 break;
-		        default:
+		      
+		       	 default:
 		        	System.out.println("Invalid Input");
 		        }	
 		        

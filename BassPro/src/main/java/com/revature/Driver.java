@@ -1,21 +1,20 @@
 package com.revature;
 
 
-import com.revature.controllers.RegistrationController;
 import com.revature.controllers.WelcomePage;
 import com.revature.daos.ItemList;
 import com.revature.models.OrderingSystem;
+import com.revature.repositories.EmployeePostgres;
+import com.revature.repositories.ItemPostgres;
 
 public class Driver {
+	
 
 	public static void main(String[] args) {
-		WelcomePage wc = new WelcomePage();
-//		ItemList li = new ItemList();
-//		li.add();
-		wc.welcomePage();
-		
+		 WelcomePage.welcomePage();
 
 
-	}
+	
 
+}
 }

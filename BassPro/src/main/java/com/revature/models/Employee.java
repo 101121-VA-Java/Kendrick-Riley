@@ -2,40 +2,29 @@ package com.revature.models;
 
 import java.util.Objects;
 
-public class Employee extends User {
+public class Employee {
 	private int id;
 	private String name;
 	private String username;
 	private String password;
-	private Role role; 
-	private Employee manager;
 	
 	public Employee() {
 		super();
-	}
-	
-	public Employee(int id) {
-		super();
-		this.id = id;
-	}
-	
-
-	public Employee(String name, String username, String password) {
-		super();
-		this.name = name;
-		this.username = username;
-		this.password = password;
+		// TODO Auto-generated constructor stub
 	}
 
-
-	public Employee(int id, String name, String username, String password, Role role, Employee manager) {
+	public Employee(int id, String name, String username, String password) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.password = password;
-		this.role = role;
-		this.manager = manager;
+	}
+
+	public Employee(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
 	}
 
 	public int getId() {
@@ -70,31 +59,14 @@ public class Employee extends User {
 		this.password = password;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public Employee getManager() {
-		return manager;
-	}
-
-	public void setManager(Employee manager) {
-		this.manager = manager;
-	}
-
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + ", role="
-				+ role + ", manager=" + manager + "]";
+		return "Employee [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, manager, name, password, role, username);
+		return Objects.hash(id, name, password, username);
 	}
 
 	@Override
@@ -106,9 +78,12 @@ public class Employee extends User {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		return id == other.id && Objects.equals(manager, other.manager) && Objects.equals(name, other.name)
-				&& Objects.equals(password, other.password) && role == other.role
+		return id == other.id && Objects.equals(name, other.name) && Objects.equals(password, other.password)
 				&& Objects.equals(username, other.username);
 	}
+
 	
-}
+
+	
+	
+}	

@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Employee;
-import com.revature.models.Role;
 
-public class EmployeeList extends Employee implements EmployeeDao {
+public class EmployeeList implements EmployeeDao {
 	
 	private List<Employee> employees;
 	
 	public EmployeeList() {
 		employees = new ArrayList<>();
 		
-		Employee SystemAdmin = new Employee(0, "System Admin", "System Admin",
-				                                "AdminPass",Role.Admin, null);
-		employees.add(SystemAdmin);
+	
 	}
 
 	@Override
@@ -50,6 +47,11 @@ public class EmployeeList extends Employee implements EmployeeDao {
 		}
 	 employees.set(t.getId(), t);
 		return true;
+	}
+	@Override
+	public Employee delete(Employee t) {
+		employees.remove(t);
+		return t;
 	}
 
 	

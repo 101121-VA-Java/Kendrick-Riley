@@ -3,72 +3,75 @@ package com.revature.models;
 import java.util.Objects;
 
 public class Item {
+	
 	private int id;
 	private String decription;
 	private int quantity;
-	private boolean itemAvail;
-
+	private double price;
 	
-	public Item(int id, String decription, int quantity, boolean itemAvail) {
+	public Item() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Item(int id, String decription, int quantity, double price) {
 		super();
 		this.id = id;
 		this.decription = decription;
 		this.quantity = quantity;
-		this.itemAvail = itemAvail;
+		this.price = price;
 	}
 
-
-	public Item() {
-	super();
-	
+	public Item(String decription) {
+		super();
+		this.decription = decription;
 	}
 
+	public Item(int id, String decription, int quantity) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getDecription() {
 		return decription;
 	}
 
-
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
-
 
 	public int getQuantity() {
 		return quantity;
 	}
 
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-
-	public boolean isItemAvail() {
-		return itemAvail;
+	public double getPrice() {
+		return price;
 	}
 
-
-	public void setItemAvail(boolean itemAvail) {
-		this.itemAvail = itemAvail;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", decription=" + decription + ", quantity=" + quantity + ", price=" + price + "]";
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(decription, id, itemAvail, quantity);
+		return Objects.hash(decription, id, price, quantity);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -79,16 +82,8 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return Objects.equals(decription, other.decription) && id == other.id && itemAvail == other.itemAvail
-				&& quantity == other.quantity;
+		return Objects.equals(decription, other.decription) && id == other.id
+				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price) && quantity == other.quantity;
 	}
-
-
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", decription=" + decription + ", quantity=" + quantity + ", itemAvail=" + itemAvail
-				+ "]";
-	}
-	
 
 }

@@ -31,16 +31,14 @@ public class EmployeeMenu {
 			
 				switch (choose) {
 				case 1:
-				LoginController.logIn();
+				lc.logIn();
 				break;
 				case 2:
-					RegistrationController.reg();
+					rc.reg();
 				break;
 				case 3: 
 					
-						ItemList it = new ItemList();
-						
-						
+							
 				break;
 				
 				case 4:
@@ -54,7 +52,7 @@ public class EmployeeMenu {
 					break;
 					
 					case 7:
-						ManagerMenu.ManagerMenu();
+						
 					break;
 				default: 
 					System.out.println("Invaild input");

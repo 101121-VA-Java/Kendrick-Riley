@@ -8,7 +8,6 @@ import com.revature.daos.EmployeeList;
 import com.revature.exception.LoginException;
 import com.revature.exception.UsernameAlreadyExistsException;
 import com.revature.models.Employee;
-import com.revature.models.Role;
 
 public class EmployeeService {
 	
@@ -21,8 +20,6 @@ public class EmployeeService {
 		if(newHire != null) {
 			throw new UsernameAlreadyExistsException();
 		}
-		e.setRole(Role.Basic_Employee);
-		e.setManager(ed.getById(0));
 		
 		return ed.add(e);
 }

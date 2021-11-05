@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Customer;
-import com.revature.repositories.CustomerDao;
+
 
 public class CustomerList extends Customer implements CustomerDao{
 
@@ -43,6 +43,8 @@ public class CustomerList extends Customer implements CustomerDao{
 		customers.set(t.getId(), t);
 		return true;
 	}
+
+
 
 
 

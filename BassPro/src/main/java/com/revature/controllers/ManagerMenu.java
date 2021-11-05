@@ -6,10 +6,10 @@ import com.revature.daos.ItemList;
 
 public class ManagerMenu {
 	 static Scanner sc = new Scanner(System.in);
-		
+
 	protected static int choose;
 	
-	public static void ManagerMenu() {
+	public void managerMenu() {
 		boolean run = true;
 		
 		do {
@@ -20,26 +20,47 @@ public class ManagerMenu {
         System.out.println("Select 4 to make offer");
         System.out.println("Select 5 to view remaining payment");
         System.out.println("Select 6 to View weekly payments");
-        System.out.println("Select 4 to reject all pending offers");
-        System.out.println("Select 4 Update item status");
-        System.out.println("Select 6 to Exit");
+        System.out.println("Select 7 to reject all pending offers");
+        System.out.println("Select 8 Update item status");
+        System.out.println("Select 9 to Exit");
         System.out.print("Enter selected option: ");
         
-	switch (choose) {
-		LoginController.logIn();
-		case 1: {
-		RegistrationController.reg();
-	}if(choose ==3) {
-		ItemList itemList = new ItemList();
-		itemList.getAll();
-	}if(choose == 4) {
+	switch (choose){
+	case 1:
 		
-	}if(choose == 5) {
+		break;
+	case 2:
+		rc.reg();
+		break;
+	case 3:
+
+		it.getAll();
+		break;
+	case 4:
+		break;
 		
-	}if(choose == 6) {
-		System.out.println("Program exited! Have a great day");
-	}if(choose == 7) {
+	case 5:
+		break;
+		
+	case 6:
+		
+		break;
+		
+	case 7:
+		
+		break;
+	case 8:
+		
+		break;
+	case 9:
+		System.out.println("Program Exited!");
+   	 run = false;
+		break;
+		default:
+			System.out.println("Invalid Input");
+	}	
+		}while (run);	
 		
 	}
 }	
-}
+
