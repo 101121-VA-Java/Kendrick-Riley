@@ -3,7 +3,7 @@ package com.revature.daos;
 import java.util.List;
 
 	
-// An interface for other Daos to extend
+
 	
 public interface GenericDao<T> {
 

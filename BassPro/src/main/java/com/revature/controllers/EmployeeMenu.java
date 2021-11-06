@@ -7,7 +7,7 @@ import com.revature.services.ItemService;
 
 public class EmployeeMenu {
 	 static Scanner sc = new Scanner(System.in);
-	 
+	 	private static ItemController ic = new ItemController();
 	 	private static ItemService is = new ItemService();
 		protected static int choose;
 		
@@ -29,7 +29,7 @@ public class EmployeeMenu {
 			
 				switch (choose) {
 				case 1:
-//					is.addItem(item); todo Start here 
+				ic.addItem();
 				break;
 				case 2:
 			

@@ -8,6 +8,7 @@ public class Customer{
 	private String name;
 	private String username;
 	private String password;
+	private boolean logged;
 	
 	public Customer() {
 		super();
@@ -27,6 +28,15 @@ public class Customer{
 		this.username = username;
 		this.password = password;
 	}
+	
+	public boolean isLogged() {
+		return logged;
+	}
+
+	public void setLogged(boolean logged) {
+		this.logged = logged;
+	}
+
 
 	public int getId() {
 		return id;

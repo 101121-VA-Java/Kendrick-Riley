@@ -30,8 +30,11 @@ public class ItemPostgres implements ItemDao {
 			while (rs.next()) {
 				int id = rs.getInt("i_id");
 				String decription = rs.getString("i_decription");
-				int i_quantity = rs.getInt("i_quantity");
-				double i_itemprice = rs.getDouble("i_itemprice");
+				int quantity = rs.getInt("i_quantity");
+				double price = rs.getDouble("i_itemPrice");
+				int stocked = rs.getInt("i_stocked");
+				int cusId = rs.getInt("i_cusId");
+				String status = rs.getString("i_status"); 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -40,9 +43,10 @@ public class ItemPostgres implements ItemDao {
 			e1.printStackTrace();
 		}
 		return items;
+		
 }	public Item add(Item item) {
-	String sql = "insert into item ( i_decription, i_quantity, i_itemprice) "
-			+ "values (?, ?, ?,) returning i_id;";
+	String sql = "insert into item ( i_decription, i_quantity, i_itemprice, i_stocked, i_cusId, i_status) "
+			+ "values (?, ?, ?, ?, ?, ?);";
 
 	try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -50,6 +54,9 @@ public class ItemPostgres implements ItemDao {
 		ps.setString(1, item.getDecription());
 		ps.setInt(2, item.getQuantity());
 		ps.setDouble(3, item.getPrice());
+		ps.setInt(4, item.getStocked());
+		ps.setInt(5, item.getCusId());
+		ps.setString(6, item.getStatus());
 	
 		
 
@@ -68,24 +75,70 @@ public class ItemPostgres implements ItemDao {
 }
 @Override
 public Item getById(int id) {
-	// TODO Auto-generated method stub
-	return null;
+	String sql = "select * from skis where e_id = ? ";
+	Item i = null;
+	
+	try(Connection con = ConnectionUtil.getConnectionFromFile()){
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet rs = ps.executeQuery();
+		
+		if(rs.next()) {
+
+			String decription = rs.getString("i_decription");
+			int quantity = rs.getInt("i_quantity");
+			double price = rs.getDouble("i_itemPrice");
+			int stocked = rs.getInt("i_stocked");
+			int cusId = rs.getInt("i_cusId");
+			String status = rs.getString("i_status"); 
+
+			i = new Item(decription, quantity, price, stocked, cusId, status);
+		}
+	} 
+	catch (SQLException | IOException e) {
+		e.printStackTrace();
+	}
+	return i;
 }
 
+
+
 @Override
-public boolean update(Item t) {
-	// TODO Auto-generated method stub
-	return false;
-}
+public boolean update(Item item) {
+	String sql = "update item set i_decription = ?, i_quantity = ?, i_price = ?, i_stocked = ?, i_cusid = ? "
+			+ "where i_status = ?;";
+			
+	int rowsChanged = -1;
+	
+	try (Connection con = ConnectionUtil.getConnectionFromFile()){
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, item.getDecription());
+		ps.setInt(2, item.getQuantity());
+		ps.setDouble(3, item.getPrice());
+		ps.setInt(4, item.getStocked());
+		ps.setInt(5, item.getCusId());
+		ps.setString(6, item.getStatus());
+	}
+	catch (SQLException | IOException e) {
+		e.printStackTrace();
+	}
+	if (rowsChanged > 0) {
+		return true;
+	} else {
+		return false;
+	}
+} 
+
 @Override
 public Item delete(Item item) {
-	String sql = "delete from Item where i_id = ?;";
+	String sql = "delete from Item where i_decription = ?;";
 	int rowsChanged = -1;
-	int id = item.getId();
+	String id = item.getDecription();
 	
 	try (Connection con = ConnectionUtil.getConnectionFromFile();) {
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, id);
+		ps.setString(1, id);
 				
 		rowsChanged = ps.executeUpdate();
 	}

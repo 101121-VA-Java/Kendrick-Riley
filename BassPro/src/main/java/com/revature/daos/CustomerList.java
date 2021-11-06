@@ -44,6 +44,12 @@ public class CustomerList extends Customer implements CustomerDao{
 		return true;
 	}
 
+	@Override
+	public Customer delete(Customer t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 

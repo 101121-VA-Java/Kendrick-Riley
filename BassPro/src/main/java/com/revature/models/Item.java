@@ -4,39 +4,49 @@ import java.util.Objects;
 
 public class Item {
 	
-	private int id;
+
 	private String decription;
 	private int quantity;
 	private double price;
+	private int stocked;
+	private int cusId;
+	private String status;
 	
 	public Item() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(int id, String decription, int quantity, double price) {
+	public Item(String decription, int quantity, double price, int stocked, int cusId, String status) {
 		super();
-		this.id = id;
 		this.decription = decription;
 		this.quantity = quantity;
 		this.price = price;
+		this.stocked = stocked;
+		this.cusId = cusId;
+		this.status = status;
 	}
 
-	public Item(String decription) {
+	public Item(String decription, int stocked) {
 		super();
 		this.decription = decription;
+		this.stocked = stocked;
 	}
 
-	public Item(int id, String decription, int quantity) {
-		// TODO Auto-generated constructor stub
+	public Item(String decription, int quantity, double price, int stocked, String status) {
+		super();
+		this.decription = decription;
+		this.quantity = quantity;
+		this.price = price;
+		this.stocked = stocked;
+		this.status = status;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public Item(String decription, double price, int stocked) {
+		super();
+		this.decription = decription;
+		this.price = price;
+		this.stocked = stocked;
 	}
 
 	public String getDecription() {
@@ -63,14 +73,39 @@ public class Item {
 		this.price = price;
 	}
 
+	public int getStocked() {
+		return stocked;
+	}
+
+	public void setStocked(int stocked) {
+		this.stocked = stocked;
+	}
+
+	public int getCusId() {
+		return cusId;
+	}
+
+	public void setCusId(int cusId) {
+		this.cusId = cusId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", decription=" + decription + ", quantity=" + quantity + ", price=" + price + "]";
+		return "Item [decription=" + decription + ", quantity=" + quantity + ", price=" + price + ", stocked=" + stocked
+				+ ", cusId=" + cusId + ", status=" + status + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(decription, id, price, quantity);
+		return Objects.hash(cusId, decription, price, quantity, status, stocked);
 	}
 
 	@Override
@@ -82,8 +117,11 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return Objects.equals(decription, other.decription) && id == other.id
-				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price) && quantity == other.quantity;
+		return cusId == other.cusId && Objects.equals(decription, other.decription)
+				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price) && quantity == other.quantity
+				&& Objects.equals(status, other.status) && stocked == other.stocked;
 	}
+	
+
 
 }

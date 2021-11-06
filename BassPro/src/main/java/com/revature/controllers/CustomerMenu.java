@@ -25,10 +25,10 @@ public class CustomerMenu {
 				
 				switch (choose) {
 					case 1:
-					is.viewInventory();
+					is.showInventory();
 					break;
 					case 2:
-				
+						
 					break;
 					case 3:
 	

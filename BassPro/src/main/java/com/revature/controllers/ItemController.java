@@ -30,7 +30,8 @@ public class ItemController {
 		if(priceA.trim().length() < 1 || price == 0) {
 			return;
 		}
-		Item newItem = new Item(0, description, quantity, price);
+		Item newItem = new Item(description, quantity, price);
+		newItem = is.add(newItem);
 			System.out.println("Item added " + newItem.getDecription() + "!");
 			
 		
