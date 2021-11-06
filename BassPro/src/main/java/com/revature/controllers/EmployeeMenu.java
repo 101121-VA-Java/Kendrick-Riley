@@ -3,11 +3,12 @@ package com.revature.controllers;
 import java.util.Scanner;
 
 import com.revature.daos.ItemList;
+import com.revature.services.ItemService;
 
 public class EmployeeMenu {
 	 static Scanner sc = new Scanner(System.in);
 	 
-	 
+	 	private static ItemService is = new ItemService();
 		protected static int choose;
 		
 		
@@ -16,25 +17,22 @@ public class EmployeeMenu {
 	
 			do {
 			System.out.println("***    Top Bass Pro Shop***");
-	        System.out.println("Select 1 for Login");
-	        System.out.println("Select 2 for User Registration");
-	        System.out.println("Select 3 to add item");
-	        System.out.println("Select 4 to delete item");
-	        System.out.println("Select 5 accept pending offer");
-	        System.out.println("Select 6 to view all payments");
-	        System.out.println("Select 7 for manager view");
+	        System.out.println("Select 1 to add item");
+	        System.out.println("Select 2 to delete item");
+	        System.out.println("Select 3 accept pending offer");
+	        System.out.println("Select 4 to view all payments");
+	        System.out.println("Select 5 for manager view");
 	        System.out.print("Enter selected option: ");
 			choose = sc.nextInt();
 	        
-//	        System.out.print("Enter selected option: ");
-//			choose = sc.nextInt();
+
 			
 				switch (choose) {
 				case 1:
-				lc.logIn();
+//					is.addItem(item); todo Start here 
 				break;
 				case 2:
-					rc.reg();
+			
 				break;
 				case 3: 
 					
@@ -46,13 +44,6 @@ public class EmployeeMenu {
 					break;
 					
 					case 5:
-					
-					case 6:
-					
-					break;
-					
-					case 7:
-						
 					break;
 				default: 
 					System.out.println("Invaild input");

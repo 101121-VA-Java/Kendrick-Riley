@@ -3,10 +3,11 @@ package com.revature.controllers;
 import java.util.Scanner;
 
 import com.revature.daos.ItemList;
+import com.revature.services.ItemService;
 
 public class CustomerMenu {
 	static Scanner sc = new Scanner(System.in);
-	
+	private static ItemService is = new ItemService();
 	protected static int choose;
 		
 			public static void cusMenu() {
@@ -24,7 +25,7 @@ public class CustomerMenu {
 				
 				switch (choose) {
 					case 1:
-					
+					is.viewInventory();
 					break;
 					case 2:
 				

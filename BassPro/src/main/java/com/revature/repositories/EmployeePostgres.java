@@ -80,7 +80,7 @@ public class EmployeePostgres implements EmployeeDao {
 	public Employee add(Employee employee) {
 //		int genId = -1;
 		String sql = "insert into employees (e_name, e_username, e_password) "
-				+ "values (?, ?, ?, ?) returning e_id;";
+				+ "values (?, ?, ?) returning e_id;";
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = con.prepareStatement(sql);

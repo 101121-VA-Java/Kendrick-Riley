@@ -5,7 +5,7 @@ import java.util.Scanner;
 import com.revature.exception.UsernameAlreadyExistsException;
 import com.revature.models.Customer;
 import com.revature.models.Employee;
-import com.revature.models.Role;
+
 
 import com.revature.services.CustomerService;
 import com.revature.services.EmployeeService;
@@ -35,13 +35,13 @@ public class RegistrationController{
 	}
 	System.out.println("Enter your username:");
 	username = sc.nextLine();
-	if(name.trim().length() < 3) {
+	if(username.trim().length() < 3) {
 		System.out.println("Your username should be great than 3 characters.");
 		return;
 	}
 	System.out.println("Enter your password:");
 	password = sc.nextLine();
-	if(name.trim().length() < 3) {
+	if(password.trim().length() < 3) {
 		System.out.println("Your password should be great than 3 characters.");
 		return;
 	}
@@ -66,7 +66,7 @@ public class RegistrationController{
 		
 	}else if(check.equals("2")) {
 		
-		Employee newEmployee = new Employee(name, username, password);
+		Employee newEmployee = new Employee(0, name, username, password);
 		
 		
 		 try {

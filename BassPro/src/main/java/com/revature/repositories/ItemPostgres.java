@@ -42,7 +42,7 @@ public class ItemPostgres implements ItemDao {
 		return items;
 }	public Item add(Item item) {
 	String sql = "insert into item ( i_decription, i_quantity, i_itemprice) "
-			+ "values (?, ?, ?, ?) returning e_id;";
+			+ "values (?, ?, ?,) returning i_id;";
 
 	try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 		PreparedStatement ps = con.prepareStatement(sql);

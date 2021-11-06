@@ -8,11 +8,12 @@ import com.revature.daos.CustomerList;
 import com.revature.exception.LoginException;
 import com.revature.exception.UsernameAlreadyExistsException;
 import com.revature.models.Customer;
+import com.revature.repositories.CustomerPostgres;
 
 
 
 public class CustomerService {
-	protected CustomerDao cd = new CustomerList();
+	protected CustomerDao cd = new CustomerPostgres();
 
 	
 	

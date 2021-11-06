@@ -38,7 +38,7 @@ public class WelcomePage {
 		         case 2: 
 		        	 System.out.println("Please Register");
 					 System.out.println();
-				
+					 RegistrationController.reg();
 					 
 		        	
 		       		break;		          

@@ -8,10 +8,11 @@ import com.revature.daos.EmployeeList;
 import com.revature.exception.LoginException;
 import com.revature.exception.UsernameAlreadyExistsException;
 import com.revature.models.Employee;
+import com.revature.repositories.EmployeePostgres;
 
 public class EmployeeService {
 	
-	private static EmployeeDao ed = new EmployeeList();
+	private static EmployeeDao ed = new EmployeePostgres();
 	
 	
 	public Employee addEmployee(Employee e) throws UsernameAlreadyExistsException {

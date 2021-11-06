@@ -34,7 +34,7 @@ public class LoginController{
 				cs.login(username, password);
 				System.out.println("Loading...........!");
 				System.out.println("Log In Successful!");
-	
+				CustomerMenu.cusMenu();
 				
 			} catch (LoginException e) {
 				System.out.println("Invalid credentials");
