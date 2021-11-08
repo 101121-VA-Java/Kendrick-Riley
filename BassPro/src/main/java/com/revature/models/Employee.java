@@ -27,6 +27,13 @@ public class Employee {
 		this.password = password;
 	}
 
+	public Employee(String name, String username, String password) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
+	}
+
 	public int getId() {
 		return id;
 	}

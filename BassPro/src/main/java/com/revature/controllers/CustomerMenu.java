@@ -11,24 +11,29 @@ public class CustomerMenu {
 	protected static int choose;
 		
 			public static void cusMenu() {
-				boolean run = true;
+				boolean Successful = true;
 				
 				do {
 				System.out.println("** Top Bass Pro Shop**");
 				System.out.println();
-		        System.out.println("Select 1 to View items");
-		        System.out.println("Select 2 to make offer");
-		        System.out.println("Select 3 to view remaining payment");
+		        System.out.println("Select 1 to View Items");
+		        System.out.println("Select 2 to Check Cart");
+		        System.out.println("Select 3 to View Payment");
 		        System.out.println("Select 4 to Exit");
 		        System.out.print("Enter selected option: ");
 				choose = sc.nextInt();
 				
 				switch (choose) {
 					case 1:
-					is.showInventory();
+						System.out.println(" Bass Master Items: ");
+						Successful = false;
+					ItemService.buyFromInv(sc);
+		
 					break;
 					case 2:
-						
+						System.out.println("Lets view Your Items");
+						ItemService.viewCart(sc);
+						Successful = false;
 					break;
 					case 3:
 	
@@ -36,15 +41,17 @@ public class CustomerMenu {
 					case 4:
 						
 						System.out.println("Program exited! Have a great day");
+						WelcomePage.welcomePage();
+						Successful = false;
 						break;
 			
 					default: 
 						System.out.println("Invaild input");
-						run = false;
+						Successful = false;
 				}
 				
 
-				}	while (run);
+				}	while (Successful = false);
 				sc.close();
 			}
 		}

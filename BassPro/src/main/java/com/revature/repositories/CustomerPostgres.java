@@ -22,12 +22,13 @@ import Utilites.ConnectionUtil;
 		@Override
 		public Customer add(Customer customer) {
 
-			String sql = "insert into customers (c_name, c_username, c_password) "
-					+ "values (?, ?, ?) returning c_id;";
+			String sql = "insert into customers (c_id, c_name, c_username, c_password) "
+					+ "values (?, ?, ?, ?) returning c_id;";
 
 			try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 				PreparedStatement ps = con.prepareStatement(sql);
-
+				
+				ps.setInt(1, customer.getId());
 				ps.setString(1, customer.getName());
 				ps.setString(2, customer.getUsername());
 				ps.setString(3, customer.getPassword());
@@ -50,8 +51,29 @@ import Utilites.ConnectionUtil;
 
 		@Override
 		public Customer getById(int id) {
-			// TODO Auto-generated method stub
-			return null;
+			String sql = "select * from customers where c_id = ? ";
+			Customer cust = null;
+			
+			try(Connection con = ConnectionUtil.getConnectionFromFile()){
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setInt(1, id);
+				ResultSet rs = ps.executeQuery();
+				
+				if(rs.next()) {
+					int c_id = rs.getInt("c_id");
+					String c_name = rs.getString("c_name");
+					String c_username = rs.getString("c_username");
+					String c_password = rs.getString("c_password");
+					Boolean logged = rs.getBoolean("c_logged");
+
+
+					cust = new Customer(c_id, c_name, c_username, c_password, logged);
+				}
+			} 
+			catch (SQLException | IOException e) {
+				e.printStackTrace();
+			}
+			return cust;
 		}
 
 		@Override
@@ -68,10 +90,11 @@ import Utilites.ConnectionUtil;
 					String name = rs.getString("c_name");
 					String username = rs.getString("c_username");
 					String password = rs.getString("c_password");
+					Boolean logged = rs.getBoolean("c_logged");
 				
 				
-					Customer newCus = new Customer(id, name, username, password);
-					customers.add(newCus);
+					Customer newCust = new Customer(id, name, username, password, logged);
+					customers.add(newCust);
 				}
 			} catch (IOException | SQLException e1) {
 			
@@ -88,9 +111,25 @@ import Utilites.ConnectionUtil;
 		}
 
 		@Override
-		public Customer delete(Customer t) {
-			// TODO Auto-generated method stub
-			return null;
+		public Customer delete(Customer customer) {
+				String sql = "delete from customers where e_id = ?;";
+				int rowsChanged = -1;
+				int id = customer.getId();
+				try (Connection con = ConnectionUtil.getConnectionFromFile()){
+					PreparedStatement ps = con.prepareStatement(sql);
+					ps.setInt(1, id);
+					
+					rowsChanged = ps.executeUpdate();
+				}
+				catch (SQLException | IOException e){ 
+					e.printStackTrace();
+				}
+				if(rowsChanged > 0) {
+					return null;
+				} else {
+					return customer;
+				}
+	
 		}
 
 	

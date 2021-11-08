@@ -16,8 +16,8 @@ public class JdbcDriver {
 				for (Employee e : emps) {
 					System.out.println(e.getId());
 					System.out.println(e.getName());
+					System.out.println(e.getUsername());
 					System.out.println(e.getPassword());
-					System.out.println(e.getRole());
 				
 				}
 			 

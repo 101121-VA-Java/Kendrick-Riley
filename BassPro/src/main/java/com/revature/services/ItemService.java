@@ -54,7 +54,7 @@ public Item deleteItem(Item i) {
 		return i;
 	}
 }
-public void showInventory() {
+public static void showInventory() {
 	List<Item> item = id.getAll();
 	int counter = 0;
 	for(Item i: item) {
@@ -65,7 +65,7 @@ public void showInventory() {
 		}
 	}
 }
-public void toCart(int pick) {
+public static void toCart(int pick) {
 	List<Item> item = id.getAll();
 	List<Customer> customers = cd.getAll();
 	Customer custLog = new Customer();
@@ -98,7 +98,7 @@ public void toCart(int pick) {
 	}
 	
 }	
-public void showItemCart() {
+public static void showItemCart() {
 	List<Item> item = id.getAll();
 	List<Customer> customers = cd.getAll();
 	Customer custLogged = new Customer();
@@ -116,7 +116,7 @@ public void showItemCart() {
 		}
 	}
 }
-public void subCart() {
+public static void subCart() {
 	List<Item> item = id.getAll();
 	List<Customer> customers = cd.getAll();
 	Customer custLogged = new Customer();
@@ -165,6 +165,32 @@ public void rejected(int ite) {
 		}
 	}
 }
-
+public static void buyFromInv(Scanner sc) {
+	System.out.println();
+	showInventory();
+	System.out.println();
+	System.out.println("Please Enter the Item Number to add to cart");
+	System.out.println("Select 0 for menu:");
+	int selected = sc.nextInt();
+	sc.nextLine();
+	if(selected == 0){
+		CustomerMenu.cusMenu();
+	} else {
+		toCart(selected);
+	}
+	
+}
+public static void viewCart(Scanner sc) {
+	showItemCart();
+	System.out.print("To Submit Item Press 1, To Return to Menu Press 2:");
+	int choice = sc.nextInt();
+	if(choice == 1 ) {
+		System.out.println("Item submitted for processing");
+		subCart();
+	} else {
+		System.out.println(" Returning to Menu");
+		CustomerMenu.cusMenu();
+	}
+}
 }
 

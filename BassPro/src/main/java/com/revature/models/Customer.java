@@ -15,6 +15,15 @@ public class Customer{
 		// TODO Auto-generated constructor stub
 	}
 
+	public Customer(int id, String name, String username, String password, boolean logged) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.logged = logged;
+	}
+
 	public Customer(int id, String name, String username, String password) {
 		super();
 		this.id = id;
@@ -29,6 +38,21 @@ public class Customer{
 		this.password = password;
 	}
 	
+	public Customer(String name, String username, String password, boolean logged) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.logged = logged;
+	}
+
+	public Customer(String name, String username, String password) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
+	}
+
 	public boolean isLogged() {
 		return logged;
 	}

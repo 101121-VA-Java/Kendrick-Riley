@@ -15,14 +15,14 @@ public class EmployeeService {
 	private static EmployeeDao ed = new EmployeePostgres();
 	
 	
-	public Employee addEmployee(Employee e) throws UsernameAlreadyExistsException {
+	public Employee addEmployee(Employee employee) throws UsernameAlreadyExistsException {
 		
-		Employee newHire = this.getEmployeeByUsername(e.getUsername());
+		Employee newHire = this.getEmployeeByUsername(employee.getUsername());
 		if(newHire != null) {
-			throw new UsernameAlreadyExistsException();
+			throw new UsernameAlreadyExistsException();// changed e to employee?? 
 		}
 		
-		return ed.add(e);
+		return ed.add(employee);
 }
 
 

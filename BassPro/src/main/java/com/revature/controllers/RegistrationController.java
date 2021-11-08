@@ -50,7 +50,7 @@ public class RegistrationController{
 	
 	if(check.equals("1")) {
 		
-		Customer newCustomer = new Customer(0, name, username, password);
+		Customer newCustomer = new Customer(name, username, password);
 		
 		try {
 			newCustomer = cs.addCustomer(newCustomer);
@@ -66,8 +66,9 @@ public class RegistrationController{
 		
 	}else if(check.equals("2")) {
 		
-		Employee newEmployee = new Employee(0, name, username, password);
-		
+		Employee newEmployee = new Employee(id, name, username, password);
+//		got to add another sys out block to match postgres in employee. so I got to change the menu 
+//		and split up customer n employee registration
 		
 		 try {
 				newEmployee = es.addEmployee(newEmployee);
