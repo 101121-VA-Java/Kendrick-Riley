@@ -77,7 +77,7 @@ public class LoginController{
 			}
 		}
 		else {
-			userLog();
+//			userLog();
 		}
 	}
 	}			

@@ -79,20 +79,17 @@ public class EmployeePostgres implements EmployeeDao {
 	@Override
 	public Employee add(Employee employee) {
 //		int genId = -1;
-		String sql = "insert into employees (e_id, e_name, e_username, e_password) "
-				+ "values (?, ?, ?, ?);";
+		String sql = "insert into employees (e_name, e_username, e_password) "
+				+ "values (?, ?, ?);";
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, employee.getId());
+//			ps.setInt(1, employee.getId());
 			ps.setString(1, employee.getName());
 			ps.setString(2, employee.getUsername());
 			ps.setString(3, employee.getPassword());
-		
-			
-
-			ResultSet rs = ps.executeQuery();
+			ps.executeUpdate();
 
 //			if (rs.next()) {
 //				genId = rs.getInt("e_id");

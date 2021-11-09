@@ -22,20 +22,18 @@ import Utilites.ConnectionUtil;
 		@Override
 		public Customer add(Customer customer) {
 
-			String sql = "insert into customers (c_id, c_name, c_username, c_password) "
-					+ "values (?, ?, ?, ?) returning c_id;";
+			String sql = "insert into customers (c_name, c_username, c_password) "
+					+ "values (?, ?, ?);";
 
 			try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 				PreparedStatement ps = con.prepareStatement(sql);
 				
-				ps.setInt(1, customer.getId());
+//				ps.setInt(1, customer.getId());
 				ps.setString(1, customer.getName());
 				ps.setString(2, customer.getUsername());
 				ps.setString(3, customer.getPassword());
 			
-				
-
-				ResultSet rs = ps.executeQuery();
+				ps.executeUpdate();
 
 //				if (rs.next()) {
 //					genId = rs.getInt("e_id");
@@ -78,7 +76,7 @@ import Utilites.ConnectionUtil;
 
 		@Override
 		public List<Customer> getAll() {
-			String sql = "select * from customer;";
+			String sql = "select * from customers;";
 			List<Customer> customers = new ArrayList<>();
 
 			try (Connection con = ConnectionUtil.getConnectionFromFile()) {
@@ -105,9 +103,31 @@ import Utilites.ConnectionUtil;
 
 
 		@Override
-		public boolean update(Customer t) {
-			// TODO Auto-generated method stub
-			return false;
+		public boolean update(Customer customer) {
+			String sql = "update customers set c_name = ?, c_username = ?, c_password = ?, c_logged = ? "
+					+ "where c_id = ?;";
+			
+			int rowsChanged = -1;
+			
+			try (Connection con = ConnectionUtil.getConnectionFromFile()){
+				PreparedStatement ps = con.prepareStatement(sql);
+				
+				ps.setString(1, customer.getName());
+				ps.setString(2, customer.getUsername());
+				ps.setString(3, customer.getPassword());
+				ps.setBoolean(4, customer.isLogged());
+				ps.setInt(5, customer.getId());
+				
+				rowsChanged = ps.executeUpdate();
+			}
+			catch (SQLException | IOException e) {
+				e.printStackTrace();
+			}
+			if (rowsChanged > 0) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		@Override

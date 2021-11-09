@@ -8,7 +8,7 @@ public class ItemController {
 	static Scanner sc = new Scanner(System.in);
 	private static ItemService is = new ItemService();
 
-	public void addItem() {
+	public void addItem() { //need to add more information that relates to the order in sql statement
 		
 		System.out.println();
 		System.out.println("Please enter item name: ");
@@ -32,8 +32,8 @@ public class ItemController {
 		}
 		Item newItem = new Item(description, quantity, price);
 		newItem = is.add(newItem);
-			System.out.println("Item added " + newItem.getDecription() + "!");
-			
+			System.out.println("Item added " + newItem.getDescription() + "!");
+			EmployeeMenu.EmpMenu();
 		
 	}
 

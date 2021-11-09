@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Item {
 	
 
-	private String decription;
+	private String description;
 	private int quantity;
 	private double price;
 	private int stocked;
@@ -17,9 +17,18 @@ public class Item {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(String decription, int quantity, double price, int stocked, int cusId, String status) {
+	public Item(String description, int quantity, double price, int stocked, int cusId) {
 		super();
-		this.decription = decription;
+		this.description = description;
+		this.quantity = quantity;
+		this.price = price;
+		this.stocked = stocked;
+		this.cusId = cusId;
+	}
+
+	public Item(String description, int quantity, double price, int stocked, int cusId, String status) {
+		super();
+		this.description = description;
 		this.quantity = quantity;
 		this.price = price;
 		this.stocked = stocked;
@@ -27,34 +36,34 @@ public class Item {
 		this.status = status;
 	}
 
-	public Item(String decription, int stocked) {
+	public Item(String description, int stocked) {
 		super();
-		this.decription = decription;
+		this.description = description;
 		this.stocked = stocked;
 	}
 
-	public Item(String decription, int quantity, double price, int stocked, String status) {
+	public Item(String description, int quantity, double price, int stocked, String status) {
 		super();
-		this.decription = decription;
+		this.description = description;
 		this.quantity = quantity;
 		this.price = price;
 		this.stocked = stocked;
 		this.status = status;
 	}
 
-	public Item(String decription, double price, int stocked) {
+	public Item(String description, double price, int stocked) {
 		super();
-		this.decription = decription;
+		this.description = description;
 		this.price = price;
 		this.stocked = stocked;
 	}
 
-	public String getDecription() {
-		return decription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDecription(String decription) {
-		this.decription = decription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getQuantity() {
@@ -99,13 +108,13 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [decription=" + decription + ", quantity=" + quantity + ", price=" + price + ", stocked=" + stocked
+		return "Item [description=" + description + ", quantity=" + quantity + ", price=" + price + ", stocked=" + stocked
 				+ ", cusId=" + cusId + ", status=" + status + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cusId, decription, price, quantity, status, stocked);
+		return Objects.hash(cusId, description, price, quantity, status, stocked);
 	}
 
 	@Override
@@ -117,7 +126,7 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return cusId == other.cusId && Objects.equals(decription, other.decription)
+		return cusId == other.cusId && Objects.equals(description, other.description)
 				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price) && quantity == other.quantity
 				&& Objects.equals(status, other.status) && stocked == other.stocked;
 	}
