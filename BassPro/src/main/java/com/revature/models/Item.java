@@ -3,17 +3,16 @@ package com.revature.models;
 import java.util.Objects;
 
 public class Item {
-	
 
 	private String description;
 	private int quantity;
 	private double price;
 	private int cusId;
 	private String status;
-	
+
 	public Item() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Item(String description, int quantity, double price, int cusId, String status) {
@@ -39,7 +38,6 @@ public class Item {
 		this.price = price;
 		this.status = status;
 	}
-
 
 	public Item(String description, int quantity, double price, int cusId) {
 		super();
@@ -113,8 +111,5 @@ public class Item {
 				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price) && quantity == other.quantity
 				&& Objects.equals(status, other.status);
 	}
-	
-
-
 
 }

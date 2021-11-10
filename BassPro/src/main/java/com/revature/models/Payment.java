@@ -3,12 +3,12 @@ package com.revature.models;
 import java.util.Objects;
 
 public class Payment {
-	
+
 	int cusid;
 	double price;
 	boolean price_accepted;
 	double bid;
-	
+
 	public Payment() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -67,7 +67,5 @@ public class Payment {
 		return cusid == other.cusid && Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
 				&& price_accepted == other.price_accepted;
 	}
-	
-	
 
 }

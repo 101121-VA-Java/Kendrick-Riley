@@ -7,8 +7,7 @@ import java.util.Scanner;
 import com.revature.models.Employee;
 import com.revature.models.Item;
 
-
-public class ItemList implements ItemDao{
+public class ItemList implements ItemDao {
 
 	@Override
 	public Item add(Item t) {
@@ -40,6 +39,4 @@ public class ItemList implements ItemDao{
 		return null;
 	}
 
-
-
-	}
+}

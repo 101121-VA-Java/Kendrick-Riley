@@ -2,17 +2,17 @@ package com.revature.models;
 
 import java.util.Objects;
 
-public class Customer{
-	
+public class Customer {
+
 	private int id;
 	private String name;
 	private String username;
 	private String password;
 	private boolean logged;
-	
+
 	public Customer() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Customer(int id, String name, String username, String password, boolean logged) {
@@ -37,7 +37,7 @@ public class Customer{
 		this.username = username;
 		this.password = password;
 	}
-	
+
 	public Customer(String name, String username, String password, boolean logged) {
 		super();
 		this.name = name;
@@ -60,7 +60,6 @@ public class Customer{
 	public void setLogged(boolean logged) {
 		this.logged = logged;
 	}
-
 
 	public int getId() {
 		return id;
@@ -116,9 +115,5 @@ public class Customer{
 		return id == other.id && Objects.equals(name, other.name) && Objects.equals(password, other.password)
 				&& Objects.equals(username, other.username);
 	}
-	
-	
-
-	
 
 }

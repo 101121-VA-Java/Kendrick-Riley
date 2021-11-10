@@ -8,37 +8,33 @@ public class ItemController {
 	static Scanner sc = new Scanner(System.in);
 	private static ItemService is = new ItemService();
 
-	public void addItem() { //need to add more information that relates to the order in sql statement
-		
+	public void addItem() {
+
 		System.out.println();
 		System.out.println("Please enter item name: ");
 		String description = sc.nextLine();
-		if(description.trim().length() < 3) {
+		if (description.trim().length() < 3) {
 			System.out.println("Sorry! Name should be 3 characters.");
 			return;
 		}
 		System.out.println("Please enter quantity: ");
 		String quantityA = sc.nextLine();
 		int quantity = Integer.parseInt(quantityA);
-		if(quantityA.trim().length() < 1) {
+		if (quantityA.trim().length() < 1) {
 			System.out.println("Quantity must be at least 1 ");
 			return;
 		}
 		System.out.println("Please enter price): ");
 		String priceA = sc.nextLine();
 		int price = Integer.parseInt(priceA);
-		if(priceA.trim().length() < 1 || price == 0) {
+		if (priceA.trim().length() < 1 || price == 0) {
 			return;
 		}
 		Item newItem = new Item(description, quantity, price, 0, "Available");
 		newItem = is.add(newItem);
-			System.out.println("Item added " + newItem.getDescription() + "!");
-			EmployeeMenu.EmpMenu();
-		
+		System.out.println("Item added " + newItem.getDescription() + "!");
+		EmployeeMenu.EmpMenu();
+
 	}
 
-
-	
-	
-	}	
-
+}

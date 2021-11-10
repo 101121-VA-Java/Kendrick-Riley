@@ -7,7 +7,7 @@ import com.revature.models.Payment;
 import com.revature.repositories.PaymentPostgres;
 
 public class PaymentService {
-	
+
 	private static PaymentDao pd = new PaymentPostgres();
 
 	public Payment add(Payment payment) {

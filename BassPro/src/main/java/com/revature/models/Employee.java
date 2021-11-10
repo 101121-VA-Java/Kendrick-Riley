@@ -7,10 +7,10 @@ public class Employee {
 	private String name;
 	private String username;
 	private String password;
-	
+
 	public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Employee(int id, String name, String username, String password) {
@@ -94,8 +94,4 @@ public class Employee {
 				&& Objects.equals(username, other.username);
 	}
 
-	
-
-	
-	
-}	
+}

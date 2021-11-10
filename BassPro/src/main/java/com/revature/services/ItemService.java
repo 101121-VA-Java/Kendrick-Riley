@@ -59,15 +59,14 @@ public class ItemService {
 		}
 	}
 
-	public static void showInventory() {// Need change .equals because Item.getStatus()" is null
+	public static void showInventory() {
 		List<Item> item = id.getAll();
 		int counter = 0;
 		for (Item i : item) {
-//		if(i.getStatus().equals("Available")){
 			counter += 1;
 			System.out.println(counter + ": " + i.getDescription() + " " + i.getQuantity() + " " + i.getPrice() + " "
-					+ " Stocked: ");
-//		}
+					+ " Pending ");
+
 		}
 	}
 
@@ -116,8 +115,7 @@ public class ItemService {
 
 		int counter = 0;
 		for (Item i : item) {
-			if (i.getStatus().equals("Pending") && i.getCusId() == custLogged.getId()) {// should be customer id or item
-																						// customer id? Todo
+			if (i.getStatus().equals("Pending") && i.getCusId() == custLogged.getId()) {
 				counter += 1;
 				System.out.println(counter + " " + i.getDescription() + " " + i.getQuantity() + " " + +i.getPrice()
 						+ " Added to cart ");
@@ -157,7 +155,6 @@ public class ItemService {
 		}
 	}
 
-//Need help on this method
 	public void rejected(int ite) {
 		List<Item> item = id.getAll();
 		int counter = 0;
@@ -168,7 +165,6 @@ public class ItemService {
 					Item removedItem = new Item(i.getDescription(), i.getQuantity(), i.getPrice(), i.getCusId());
 					i.setStatus("Available");
 					i.setCusId(0);
-//			    addItem(i);
 					id.delete(removedItem);
 					System.out.println("Rejected" + i.getDescription() + " " + i.getQuantity() + " " + i.getPrice());
 				}
@@ -209,7 +205,6 @@ public class ItemService {
 	}
 
 	public void viewOffers(Scanner sc) {
-//		showItemCart();
 		showOffers();
 		acceptAll();
 		System.out.println();
@@ -272,12 +267,7 @@ public class ItemService {
 		List<Item> item = id.getAll();
 		List<Customer> customers = cd.getAll();
 		Customer custLogged = new Customer();
-//		for (Item i : item) {
-//			if (i.getStatus().equals("Pending")) {
-//				i.setStatus("Owned");
-//				id.update(i);
-//			}
-//		}
+
 		for (Customer cust : customers) {
 			if (cust.isLogged() == true) {
 				custLogged = cust;
