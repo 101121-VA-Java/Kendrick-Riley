@@ -18,7 +18,7 @@ public class CustomerMenu {
 				System.out.println();
 		        System.out.println("Select 1 to View Items");
 		        System.out.println("Select 2 to Check Cart");
-		        System.out.println("Select 3 to View Orders");
+		        System.out.println("Select 3 to View Order");
 		        System.out.println("Select 4 to Exit");
 		        System.out.print("Enter selected option: ");
 				choose = sc.nextInt();
@@ -38,8 +38,10 @@ public class CustomerMenu {
 					break;
 					case 3:
 						System.out.println("Your Orders");
-						is.showHistory();
+//						is.showHistory();
+						ItemService.showOffers();
 						Successful = false;
+						cusMenu();
 						break;
 					case 4:
 						

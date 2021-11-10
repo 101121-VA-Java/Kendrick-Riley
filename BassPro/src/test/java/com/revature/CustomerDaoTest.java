@@ -2,30 +2,40 @@ package com.revature;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import com.revature.models.Customer;
-import com.revature.repositories.CustomerArray;
-import com.revature.repositories.CustomerDao;
+
+import com.revature.repositories.CustomerPostgres;
 
 
 public class CustomerDaoTest {
-
-		private static CustomerDao kr;
-		
+	private int id;
+	private String name;
+	private String username;
+	private String password;
+	private boolean logged;
+	
+	 cd = new CustomerPostgres();
 		@BeforeEach
 		public void setup() {
+			
+		 
 			Customer[] customers = {new Customer(0, "Liam", "Liam24","Peace")};
 			
-			kr = new CustomerArray(customers);
+	
 		}
 		
 		@Test
 		public void getAllCustomers() {
-			Customer[] expected = {new Customer(0, "Liam", "Liam24","Peace")};
-			Customer[] actual = kr.getAllCustomers();
+			List<Customer> expected = new ArrayList<Customer>();
+			expected.add(new Customer(0, "Liam", "Liam24","Peace", true, new (1)));
+			actual = kr.getAllCustomers();
 			assertArrayEquals(expected, actual);
 		}
 		

@@ -43,7 +43,6 @@ public class JdbcDriver {
 							System.out.println(i.getDescription());
 							System.out.println(i.getQuantity());
 							System.out.println(i.getPrice());
-							System.out.println(i.getStocked());
 							System.out.println(i.getCusId());
 							System.out.println(i.getStatus());
 						}

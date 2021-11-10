@@ -34,6 +34,11 @@ public class Employee {
 		this.password = password;
 	}
 
+	public Employee(int id) {
+		super();
+		this.id = id;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -61,7 +61,8 @@ public class RegistrationController{
 		}
 		System.out.println("Registration in progress...\n");
 		System.out.println("Registration Complete");
-		CustomerMenu.cusMenu();
+//		CustomerMenu.cusMenu();
+		WelcomePage.welcomePage();
 		
 			case "2":
 //				System.out.println("Please Enter Your Employee ID Number:");

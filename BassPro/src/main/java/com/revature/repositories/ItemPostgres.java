@@ -31,11 +31,10 @@ public class ItemPostgres implements ItemDao {
 				String description = rs.getString("i_description");
 				int quantity = rs.getInt("i_quantity");
 				double price = rs.getDouble("i_itemPrice");
-				int stocked = rs.getInt("i_stocked");
 				int cusId = rs.getInt("i_cusId");
 				String status = rs.getString("i_status");
 				
-				Item newItem = new Item(description, quantity, price, stocked, cusId, status);
+				Item newItem = new Item(description, quantity, price, cusId, status);
 				items.add(newItem);//Might have to change the status to view all 
 			}
 		} catch (SQLException e) {
@@ -47,8 +46,8 @@ public class ItemPostgres implements ItemDao {
 		return items;
 		
 }	public Item add(Item item) {
-	String sql = "insert into items ( i_description, i_quantity, i_itemprice, i_stocked, i_cusId, i_status) "
-			+ "values (?, ?, ?, ?, ?, ?);";
+	String sql = "insert into items ( i_description, i_quantity, i_itemprice, i_cusId, i_status) "
+			+ "values (?, ?, ?, ?, ?);";
 
 	try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -56,9 +55,8 @@ public class ItemPostgres implements ItemDao {
 		ps.setString(1, item.getDescription());
 		ps.setInt(2, item.getQuantity());
 		ps.setDouble(3, item.getPrice());
-		ps.setInt(4, item.getStocked());
-		ps.setInt(5, item.getCusId());
-		ps.setString(6, item.getStatus());
+		ps.setInt(4, item.getCusId());
+		ps.setString(5, item.getStatus());
 		ps.executeUpdate();
 
 //		if (rs.next()) {
@@ -91,7 +89,7 @@ public Item getById(int id) {
 			int cusId = rs.getInt("i_cusId");
 			String status = rs.getString("i_status"); 
 
-			i = new Item(description, quantity, price, stocked, cusId, status);
+			i = new Item(description, quantity, price, cusId, status);
 		}
 	} 
 	catch (SQLException | IOException e) {
@@ -104,7 +102,7 @@ public Item getById(int id) {
 
 @Override
 public boolean update(Item item) {
-	String sql = "update items set i_description = ?, i_quantity = ?, i_price = ?, i_stocked = ?, i_cusid = ? "
+	String sql = "update items set i_description = ?, i_quantity = ?, i_price = ?, i_cusid = ? "
 			+ "where i_status = ?;";
 			
 	int rowsChanged = -1;
@@ -115,9 +113,8 @@ public boolean update(Item item) {
 		ps.setString(1, item.getDescription());
 		ps.setInt(2, item.getQuantity());
 		ps.setDouble(3, item.getPrice());
-		ps.setInt(4, item.getStocked());
-		ps.setInt(5, item.getCusId());
-		ps.setString(6, item.getStatus());
+		ps.setInt(4, item.getCusId());
+		ps.setString(5, item.getStatus());
 	}
 	catch (SQLException | IOException e) {
 		e.printStackTrace();

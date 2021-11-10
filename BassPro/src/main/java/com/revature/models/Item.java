@@ -8,7 +8,6 @@ public class Item {
 	private String description;
 	private int quantity;
 	private double price;
-	private int stocked;
 	private int cusId;
 	private String status;
 	
@@ -17,45 +16,37 @@ public class Item {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(String description, int quantity, double price, int stocked, int cusId) {
+	public Item(String description, int quantity, double price, int cusId, String status) {
 		super();
 		this.description = description;
 		this.quantity = quantity;
 		this.price = price;
-		this.stocked = stocked;
-		this.cusId = cusId;
-	}
-
-	public Item(String description, int quantity, double price, int stocked, int cusId, String status) {
-		super();
-		this.description = description;
-		this.quantity = quantity;
-		this.price = price;
-		this.stocked = stocked;
 		this.cusId = cusId;
 		this.status = status;
 	}
 
-	public Item(String description, int stocked) {
-		super();
-		this.description = description;
-		this.stocked = stocked;
-	}
-
-	public Item(String description, int quantity, double price, int stocked, String status) {
+	public Item(String description, int quantity, double price) {
 		super();
 		this.description = description;
 		this.quantity = quantity;
 		this.price = price;
-		this.stocked = stocked;
+	}
+
+	public Item(String description, int quantity, double price, String status) {
+		super();
+		this.description = description;
+		this.quantity = quantity;
+		this.price = price;
 		this.status = status;
 	}
 
-	public Item(String description, double price, int stocked) {
+
+	public Item(String description, int quantity, double price, int cusId) {
 		super();
 		this.description = description;
+		this.quantity = quantity;
 		this.price = price;
-		this.stocked = stocked;
+		this.cusId = cusId;
 	}
 
 	public String getDescription() {
@@ -82,14 +73,6 @@ public class Item {
 		this.price = price;
 	}
 
-	public int getStocked() {
-		return stocked;
-	}
-
-	public void setStocked(int stocked) {
-		this.stocked = stocked;
-	}
-
 	public int getCusId() {
 		return cusId;
 	}
@@ -108,13 +91,13 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [description=" + description + ", quantity=" + quantity + ", price=" + price + ", stocked=" + stocked
-				+ ", cusId=" + cusId + ", status=" + status + "]";
+		return "Item [description=" + description + ", quantity=" + quantity + ", price=" + price + ", cusId=" + cusId
+				+ ", status=" + status + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cusId, description, price, quantity, status, stocked);
+		return Objects.hash(cusId, description, price, quantity, status);
 	}
 
 	@Override
@@ -128,9 +111,10 @@ public class Item {
 		Item other = (Item) obj;
 		return cusId == other.cusId && Objects.equals(description, other.description)
 				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price) && quantity == other.quantity
-				&& Objects.equals(status, other.status) && stocked == other.stocked;
+				&& Objects.equals(status, other.status);
 	}
 	
+
 
 
 }

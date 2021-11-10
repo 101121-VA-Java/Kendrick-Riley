@@ -7,6 +7,7 @@ import com.revature.daos.EmployeeDao;
 import com.revature.daos.EmployeeList;
 import com.revature.exception.LoginException;
 import com.revature.exception.UsernameAlreadyExistsException;
+import com.revature.execption.UsernameDoesNotExistsException;
 import com.revature.models.Employee;
 import com.revature.repositories.EmployeePostgres;
 
@@ -45,7 +46,5 @@ public class EmployeeService {
 		}
 		return emp;
 	}
-	
-	
 	
 }

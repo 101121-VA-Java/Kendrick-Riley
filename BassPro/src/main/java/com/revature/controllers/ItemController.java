@@ -30,7 +30,7 @@ public class ItemController {
 		if(priceA.trim().length() < 1 || price == 0) {
 			return;
 		}
-		Item newItem = new Item(description, quantity, price);
+		Item newItem = new Item(description, quantity, price, 0, "Available");
 		newItem = is.add(newItem);
 			System.out.println("Item added " + newItem.getDescription() + "!");
 			EmployeeMenu.EmpMenu();

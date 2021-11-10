@@ -40,7 +40,9 @@ public class CustomerService {
 		Customer c = this.getCustomerByUsername(username);
 		if(c == null || !c.getPassword().equals(password)) {
 			throw new LoginException();
-		}
+		} 
+		c.setLogged(true);
+		cd.update(c);
 		return c;
 	}
 	
