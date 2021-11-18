@@ -26,7 +26,7 @@ public class UserTests {
 
 	@Test
 	public void loginSystemTest() {
-//		Mockito.when(ud.loginUser(null).thenReturn(false))); find out how to do this.
+		Mockito.when(ud.loginUser(null)).thenReturn(true);
 		boolean expected = true;
 		boolean actual = us.loginUser(null);
 		assertEquals(expected, actual);

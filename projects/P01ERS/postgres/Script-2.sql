@@ -1,10 +1,10 @@
-drop table if exists ERS_REMIMBURSEMENT;
+drop table if exists ERS_REIMBURSEMENT;
 drop table if exists ERS_REIMBURSEMENT_STATUS;
 drop table if exists ERS_REIMBURSEMENT_TYPES;
 drop table if exists ERS_Users; 
 drop table if exists ERS_USER_ROLES;
 
-create table if not exists ERS_REMIMBURSEMENT(
+create table if not exists ERS_REIMBURSEMENT(
 	REIMB_ID Serial primary key,
 	REIMB_AMOUNT INTEGER not null,
 	REIMB_SUBMITTED TIMESTAMP not null,
