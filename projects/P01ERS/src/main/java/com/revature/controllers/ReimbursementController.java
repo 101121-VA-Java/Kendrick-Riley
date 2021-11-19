@@ -2,7 +2,7 @@ package com.revature.controllers;
 
 import io.javalin.http.Context;
 
-public class EmployeeController {
+public class ReimbursementController {
 	public static void addReimbursementRequest(Context ctx) {
 		//TODO return database info
 		//TODO add reim controller.

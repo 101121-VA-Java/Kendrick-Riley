@@ -4,7 +4,7 @@ import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 import static io.javalin.apibuilder.ApiBuilder.post;
 import io.javalin.Javalin;
-import com.revature.controllers.EmployeeController;
+import com.revature.controllers.ReimbursementController;
 
 public class Routes {
 	public void run() {
@@ -15,11 +15,12 @@ public class Routes {
 
 		app.routes(() -> {
 			path("reimbursement", () -> {
-				post(EmployeeController::addReimbursementRequest);
+				post(ReimbursementController::addReimbursementRequest);
 			});
 			path("auth", () ->{
-				post(AuthController::login);
+//				post(AuthController::login);
 			});
+			
 		});
 
 	}

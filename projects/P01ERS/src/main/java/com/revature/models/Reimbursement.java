@@ -1,11 +1,13 @@
 package com.revature.models;
 
+import java.sql.Timestamp;
+
 public class Reimbursement {
 
 	private int id;
 	private double amount;
-	private String submittedDate;
-	private String resolvedDate;
+	private Timestamp submittedDate;
+	private Timestamp  resolvedDate;
 	private String description;
 	private User author;
 	private User resolver;
@@ -17,7 +19,7 @@ public class Reimbursement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reimbursement(int id, double amount, String submittedDate, String resolvedDate, String description,
+	public Reimbursement(int id, double amount, Timestamp submittedDate, Timestamp resolvedDate, String description,
 			User author, User resolver, ReimbursementStatus status_Id, ReimbursementType type_Id) {
 		super();
 		this.id = id;
@@ -29,6 +31,38 @@ public class Reimbursement {
 		this.resolver = resolver;
 		this.status_Id = status_Id;
 		this.type_Id = type_Id;
+	}
+
+	public Reimbursement(double amount, Timestamp submittedDate, Timestamp resolvedDate, String description,
+			User author, User resolver, ReimbursementStatus status_Id, ReimbursementType type_Id) {
+		super();
+		this.amount = amount;
+		this.submittedDate = submittedDate;
+		this.resolvedDate = resolvedDate;
+		this.description = description;
+		this.author = author;
+		this.resolver = resolver;
+		this.status_Id = status_Id;
+		this.type_Id = type_Id;
+	}
+
+	public Reimbursement(double amount, Timestamp submittedDate, Timestamp resolvedDate, String description,
+			User author, User resolver, ReimbursementStatus status_Id) {
+		super();
+		this.amount = amount;
+		this.submittedDate = submittedDate;
+		this.resolvedDate = resolvedDate;
+		this.description = description;
+		this.author = author;
+		this.resolver = resolver;
+		this.status_Id = status_Id;
+	}
+
+	@Override
+	public String toString() {
+		return "Reimbursement [id=" + id + ", amount=" + amount + ", submittedDate=" + submittedDate + ", resolvedDate="
+				+ resolvedDate + ", description=" + description + ", author=" + author + ", resolver=" + resolver
+				+ ", status_Id=" + status_Id + ", type_Id=" + type_Id + "]";
 	}
 
 	public int getId() {
@@ -47,19 +81,19 @@ public class Reimbursement {
 		this.amount = amount;
 	}
 
-	public String getSubmittedDate() {
+	public Timestamp getSubmittedDate() {
 		return submittedDate;
 	}
 
-	public void setSubmittedDate(String submittedDate) {
+	public void setSubmittedDate(Timestamp submittedDate) {
 		this.submittedDate = submittedDate;
 	}
 
-	public String getResolvedDate() {
+	public Timestamp getResolvedDate() {
 		return resolvedDate;
 	}
 
-	public void setResolvedDate(String resolvedDate) {
+	public void setResolvedDate(Timestamp resolvedDate) {
 		this.resolvedDate = resolvedDate;
 	}
 
@@ -103,16 +137,6 @@ public class Reimbursement {
 		this.type_Id = type_Id;
 	}
 
-	@Override
-	public String toString() {
-		return "Reimbursement [id=" + id + ", amount=" + amount + ", submittedDate=" + submittedDate + ", resolvedDate="
-				+ resolvedDate + ", description=" + description + ", author=" + author + ", resolver=" + resolver
-				+ ", status_Id=" + status_Id + ", type_Id=" + type_Id + "]";
-	}
-	
-	
-	
-	
-	
+
 	
 }

@@ -54,5 +54,3 @@ USER_ROLE varchar(20) not null
 );
 insert into ERS_USER_ROLES (USER_ROLE) values ('E')
 insert into ERS_USER_ROLES (USER_ROLE) values ('FM');
-
-
