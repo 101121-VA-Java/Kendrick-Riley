@@ -1,0 +1,20 @@
+- User root class has, userId, username, password, register
+
+- Login class has login and out, reset password, reset username.
+
+- Customer **is a User**, has {customerId, name, phone,}, viewItem, makeOfferForItem, makePayment, viewPaymentBalance
+
+- Employee is a **User** has {empId, name, empRole}, addItem, removeItem, acceptRejectOffer, viewPayments,
+
+- Manager **is an Employee** createEmployee, removeEmployee, viewSalesHistory
+
+- Item {itemId, description, quantity, state?}
+
+- Ordering System has item prices and payments and how many to buy.
+
+- System updateItemState, calculateWeeklyPayments.
+
+1st. The system has to have a way to enter an input. therefore import an scanner. 
+Maybe use an if-else statements to tell if the user that is using the system is a employee, manager, or customer.
+By there responses, use either a switch flow or use system.outs to display options.
+Once the system knows their role, the options will be based on on their role.

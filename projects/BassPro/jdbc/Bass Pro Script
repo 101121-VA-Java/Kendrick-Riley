@@ -1,0 +1,40 @@
+drop table if exists employees;
+CREATE table if not exists employees (
+    e_id serial primary key,
+	e_name varchar(40) not null,
+	e_username varchar(30) unique,
+	e_password varchar(20) not null,
+	e_role varchar(20), 
+	man_e_id integer references employees(e_id)
+
+);
+insert into employees (e_name, e_username, e_password, e_role) values ('Kendrick', 'rilo', '2424', null);
+insert into employees (e_name, e_username, e_password, e_role) values ('Liam', 'liam24', '1234', null);
+
+drop table if exists customers;
+CREATE TABLE if not exists customers (
+	c_id serial primary key,
+	c_name varchar(30) not null,
+	c_lastname varchar(25) not null,
+	c_username varchar(20) unique,
+	c_password varchar(20) not null,
+	c_role varchar(30)
+
+);
+
+insert into customers (c_name, c_lastname, c_username, c_password, c_role) values ('Ken', 'lamar', 'ken24', 'ken2424', null);
+
+
+
+drop table if exists items;
+CREATE TABLE if not exists items(
+	i_id serial primary key,
+	i_decription varchar(50) not null,
+	i_quantity integer not null,
+	i_itemprice decimal not null
+	
+);
+insert into items (i_decription, i_quantity, i_itemprice) values ('Abu Garcia Revo', '20', '199');
+insert into items (i_decription, i_quantity, i_itemprice) values ('Lews Pro', '50', '349');
+insert into items (i_decription, i_quantity, i_itemprice) values ('Penn', '30', '149');
+insert into items (i_decription, i_quantity, i_itemprice) values ('Daiwa', '15', '499');
