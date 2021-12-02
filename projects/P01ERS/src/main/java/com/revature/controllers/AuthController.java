@@ -13,10 +13,11 @@ public class AuthController {
 		
 		String username = ctx.formParam("username");
 		String password = ctx.formParam("password");
-		
+		System.out.println(username);
+		System.out.println(password);
 		String token = null;
-		
 		if(username != null && password != null) {
+			
 			token = as.login(username, password);
 		}
 		
@@ -25,6 +26,7 @@ public class AuthController {
 			ctx.header("Authorization", token);
 			ctx.status(HttpCode.OK);
 		} else {
+			System.out.println("error here");
 			ctx.status(HttpCode.NOT_FOUND);
 		}
 	}

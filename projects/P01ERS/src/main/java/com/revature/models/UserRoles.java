@@ -63,7 +63,16 @@ public class UserRoles {
 		if (getClass() != obj.getClass())
 			return false;
 		UserRoles other = (UserRoles) obj;
-		return Objects.equals(role, other.role) && roleId == other.roleId;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
+		if (roleId != other.roleId)
+			return false;
+		return true;
+//		return Objects.equals(role, other.role) && roleId == other.roleId;
+	
 	}
 
 }

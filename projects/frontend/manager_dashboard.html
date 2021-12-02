@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>employee_dash</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Style the side navigation */
+        
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+        }
+        /* Side navigation links */
+        
+        .sidenav a {
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            display: block;
+        }
+        /* Change color on hover */
+        
+        .sidenav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        /* Style the content */
+        
+        .content {
+            margin-left: 200px;
+            padding-left: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="employee_dash.css">
+</head>
+
+<body>
+    <div class="content">
+        <h1>Welcome to the Management System</h1>
+
+    </div>
+
+    <!-- Background image -->
+    <div class="bg-image" style="
+  background-image: url(https://cdn.pixabay.com/photo/2015/04/25/23/32/wormhole-739872__340.png);
+  height: 100vh;
+"></div>
+    <!-- Background image -->
+
+
+
+    <div class="sidenav">
+        <br>
+        <br>
+        <br>
+        <a href="reimbursment_form.html">Submit Reimbursment </a>
+        <a href="reim_lookup.html">Reimbursement Lookup</a>
+        <a href="pendingReim.html">View Pending/Resloved Information</a>
+        <a href="get_data.html"> View All Employees</a>
+
+        <a class="nav-link" onclick="logout()" href="index.html">Logout</a>
+    </div>
+
+
+    <!-- <script src="index.js"></script> -->
+</body>
+
+</html>

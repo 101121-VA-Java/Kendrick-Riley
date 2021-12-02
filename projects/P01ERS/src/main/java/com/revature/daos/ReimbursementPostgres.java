@@ -18,43 +18,62 @@ import Utilites.ConnectionUtil;
 public class ReimbursementPostgres implements ReimbursementDao {
 
 	@Override
-	public Reimbursement add(Reimbursement r) {
-		Reimbursement newReim = null;
-		String sql = "insert into ERS_REIMBURSEMENTS (REIMB_AMOUNT, REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, REIMB_AUTHOR, REIMB_RESOLVER, REIMB_STATUS_ID, REMI_TYPE_ID) values (?, ?, ?, ?, ?, ?, ?, ?) returning REIMB_ID;";
+	public int add(Reimbursement r) {
+		int res = -1;
+		String sql = "insert into ers_reimbursement"
+				+ "(reimb_amount, reimb_submitted, reimb_description, reimb_author,"
+				+ " reimb_type_id, reimb_status_id)" + "values (?,?,?,?,?,?) returning reimb_id;";
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setDouble(1, r.getAmount());
-			ps.setTimestamp(2, r.getSubmittedDate());
-			ps.setTimestamp(3, r.getResolvedDate());
-			ps.setString(4, r.getDescription());
-			ps.setInt(5, r.getAuthor().getUserId());
-			ps.setInt(6, r.getResolver().getUserId());
-			ps.setInt(7, r.getStatus_Id().getStatusId());
-			ps.setInt(8, r.getType_Id().getTypeId());
-
+			ps.setInt(1, r.getAmount());
+			ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+			ps.setString(3, r.getDescription());
+			ps.setInt(4, r.getAuthor());
+			ps.setInt(5, r.getType_Id());
+			ps.setInt(6, r.getStatus_Id());
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				newReim.setId(rs.getInt("REIMB_ID"));
+				res = rs.getInt("REIMB_ID");
 
 			}
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
-		return newReim;
+		return res;
 	}
 
 	@Override
 	public Reimbursement getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Here");
+		String sql = "select * from ERS_REIMBURSEMENT where reimb_id = ? ";
+		Reimbursement reimb = null;
+
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				reimb = new Reimbursement(rs.getInt("reimb_id"), rs.getInt("reimb_amount"),
+						rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
+						rs.getString("reimb_description"), rs.getInt("reimb_author"), rs.getInt("reimb_resolver"),
+						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
+			}
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return reimb;
+
 	}
 
 	@Override
 	public List<Reimbursement> getAll() {
-		String sql = "select * from ERS_REIMBURSEMENTS;";
+		String sql = "select * from ERS_REIMBURSEMENT;";
 		List<Reimbursement> reimbursement = new ArrayList<>();
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
@@ -62,15 +81,17 @@ public class ReimbursementPostgres implements ReimbursementDao {
 			ResultSet rs = s.executeQuery(sql);
 
 			while (rs.next()) {
-				int id = rs.getInt("REIMB_ID");
-				double amount = rs.getDouble("REIMB_AMOUNT");
-				Timestamp submittedDate = rs.getTimestamp("REIMB_SUBMITTED");
-				Timestamp resolvedDate = rs.getTimestamp("REIMB_RESOLVED");
-				String description = rs.getString("REIMB_DESCRIPTION");
-				int author = rs.getInt("REIMB_AUTHOR");
-				int resolver = rs.getInt("REIMB_RESOLVER");
-				int status_Id = rs.getInt("REIMB_STATUS_ID");
-				int type_Id = rs.getInt("REMI_TYPE_ID");
+				Reimbursement r = new Reimbursement(
+				 rs.getInt("REIMB_ID"),
+				 rs.getInt("REIMB_AMOUNT"),
+				 rs.getTimestamp("REIMB_SUBMITTED"),
+				 rs.getTimestamp("REIMB_RESOLVED"),
+				 rs.getString("REIMB_DESCRIPTION"),
+				 rs.getInt("REIMB_AUTHOR"),
+				 rs.getInt("REIMB_RESOLVER"),
+				 rs.getInt("REIMB_STATUS_ID"),
+				 rs.getInt("REIMB_TYPE_ID"));
+				 reimbursement.add(r);
 			}
 		} catch (IOException | SQLException e) {
 			e.printStackTrace();
@@ -78,22 +99,138 @@ public class ReimbursementPostgres implements ReimbursementDao {
 		return reimbursement;
 	}
 
+//	@Override
+//	public List<Reimbursement> viewPendingReimb(User u) {
+//		String sql = "select * from ERS_REIMBURSEMENT where reimb_status_id = 2;";
+//		ArrayList<Reimbursement> pendingList = new ArrayList<Reimbursement>();
+//
+//		try (Connection conn = ConnectionUtil.getConnectionFromFile()) {
+//			PreparedStatement ps = conn.prepareStatement(sql);
+//			ps.setString(1, u.getUserName());
+//			ResultSet rs = ps.executeQuery();
+//
+//			while (rs.next()) {
+//
+//				Reimbursement reimb = new Reimbursement(rs.getInt("reimb_amount"), rs.getTimestamp("reimb_submitted"),
+//						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
+//
+//				reimb.setId(rs.getInt("reimb_id"));
+//				pendingList.add(reimb);
+//			}
+//		} catch (SQLException | IOException e) {
+//			e.printStackTrace();
+//		}
+//		return pendingList;
+//
+//	}
+
 	@Override
-	public boolean update(Reimbursement t) {
+	public List<Reimbursement> viewResolvedReimb(User u) {
+		String sql = "select * from ERS_REIMBURSEMENT where reimb_status_id = 1;";
+		ArrayList<Reimbursement> resolvedList = new ArrayList<Reimbursement>();
+
+		try (Connection conn = ConnectionUtil.getConnectionFromFile()) {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getUserName());
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+//  TODO I change the method for pending reim create the same one back
+				Reimbursement reimb = new Reimbursement(rs.getInt("reimb_amount"), rs.getTimestamp("reimb_submitted"),
+						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
+
+				reimb.setId(rs.getInt("reimb_id"));
+				resolvedList.add(reimb);
+			}
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return resolvedList;
+
+	}
+
+//	@Override
+//	public int add(Reimbursement t) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+
+	@Override
+	public void delete(int id) {
 		// TODO Auto-generated method stub
-		return false;
+
 	}
 
 	@Override
-	public ArrayList<Reimbursement> viewPendingReimb(User u) {
-		// TODO Auto-generated method stub
-		return null;
+	public int update(Reimbursement r) {
+		int res = 0;
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			String sql = "UPDATE ers_reimbursement SET reimb_resolved = ?, reimb_resolver= ?, reimb_status_id = ? WHERE reimb_id = ?;";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+			ps.setInt(2, r.getResolver());
+			ps.setInt(3, r.getStatus_Id());
+			ps.setInt(4, r.getId());
+			res = ps.executeUpdate();
+			if (res > 0)
+				return res;
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> viewResolvedReimb(User u) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reimbursement> getByEmployeeId(int id) {
+		System.out.println("you at postgres employee by id line 185");
+		List<Reimbursement> rmbs = new ArrayList<>();
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			String sql = "select * from ers_reimbursement where reimb_author = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Reimbursement r = new Reimbursement(rs.getInt("reimb_id"), rs.getInt("reimb_amount"),
+						rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
+						rs.getString("reimb_description"), rs.getInt("reimb_author"), rs.getInt("reimb_resolver"),
+						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
+				rmbs.add(r);
+			}
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return rmbs;
 	}
 
-}
+	@Override
+	public List<Reimbursement> viewPendingReimb(int authorId) {
+		String sql = "select * from ERS_REIMBURSEMENT where reimb_status_id = 2;";
+		ArrayList<Reimbursement> pendingList = new ArrayList<Reimbursement>();
+
+		try (Connection conn = ConnectionUtil.getConnectionFromFile()) {
+			PreparedStatement ps = conn.prepareStatement(sql);
+		
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				Reimbursement reimb = new Reimbursement(
+						rs.getInt("reimb_amount"),
+						rs.getTimestamp("reimb_submitted"),
+						rs.getInt("reimb_status_id"),
+						rs.getInt("REIMB_AUTHOR"),
+						rs.getInt("reimb_type_id"),
+						rs.getInt("reimb_resolver"));
+
+				reimb.setId(rs.getInt("reimb_id"));
+				pendingList.add(reimb);
+			}
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return pendingList;
+
+	}
+	}
+
+

@@ -6,47 +6,56 @@ import com.revature.daos.UserDao;
 import com.revature.daos.UserPostgres;
 import com.revature.exception.LoginException;
 import com.revature.exception.UsernameAlreadyExistsException;
-
+import com.revature.models.Role;
 import com.revature.models.User;
+import java.util.stream.Collectors;
 
 public class UserService {
-	
+
 	protected UserDao ud = new UserPostgres();
 
-	public User add(User user) throws UsernameAlreadyExistsException {
-
-		User newUser = this.getUserByUsername(user.getUserName());
-		if (newUser != null) {
-			throw new UsernameAlreadyExistsException();
-		}
+	public int addUser(User user) {
+		// assigning a default manager/role
+		user.setManager(new User(2));
+		System.out.println("ROLE IS" + user.getManager());
+		user.setRole(Role.EMPLOYEE);
 
 		return ud.add(user);
 	}
 
-	public User getUserByUsername(String userName) {
-		List<User> user = ud.getAll();
-		for (User u : user) {
-			if (u.getUserName().equals(userName)) {
-				return u;
-			}
+	public User getByUsername(String username) {
+		User user = ud.getUserByUsername(username);
+		if (user != null) {
+			user.setPassword(null);
 		}
-		return null;
+
+		return user;
 	}
- // Need to decide which login I want to use? boolean or login with a usern name and password
-	public boolean loginUser(User u) {
-		if (ud.loginUser(u)) {
-			return true;
-		}
-		return false;
-	}
-	// Used this one before
-	public User login(String username, String password) throws LoginException {
-		User user = this.getUserByUsername(username);
-		if (user == null || !user.getPassword().equals(password)) {
-			throw new LoginException();
+
+	public User getUserById(int id) {
+		System.out.println("At service line 35");
+		User user = ud.getUserById(id);
+		if (user != null) {
+			user.setPassword(null);
 		}
 		return user;
 	}
+//	gets all users used by manager
+	public List<User> getUsers() {
+		System.out.println("here@service getusers");
+		List<User> users = ud.getAll().stream().map(e -> {
+			e.setPassword(null);
+			return e;
+		}).collect(Collectors.toList());
+		return users;
+	}
+
+	public int updateUser(User u) {
+		System.out.println(u);
+		return ud.update(u);
+
+	}
+
 
 
 }

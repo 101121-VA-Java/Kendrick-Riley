@@ -12,7 +12,7 @@ public class JdbcDriver {
 		UserDao ud = new UserPostgres();
 		List<User> user = ud.getAll();
 		for (User u : user) {
-			System.out.println(u.getUserId());
+			System.out.println(u.getId());
 			System.out.println(u.getUserName());
 			System.out.println(u.getPassword());
 			System.out.println(u.getFirstName());
