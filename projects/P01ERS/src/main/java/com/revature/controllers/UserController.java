@@ -52,9 +52,11 @@ public class UserController {
 		}
 	}
 	public static void getUserById(Context ctx) {
+		
 		int id = Integer.parseInt(ctx.pathParam("id"));
-		System.out.println(id);
+		
 		User u = us.getUserById(id);
+		
 		if (u != null) {
 			ctx.json(u);
 			ctx.status(HttpCode.OK);
@@ -64,9 +66,9 @@ public class UserController {
 		}
 	}
 	public static void updateUser(Context ctx) {
-		System.out.println(ctx.body());
+		System.out.println("update user line 68");
 		User updated = ctx.bodyAsClass(User.class);
-//		System.out.println(updated);
+		System.out.println("update user line 68");
 		System.out.println(updated.getId());
 		User upUser = us.getUserById(updated.getId());
 //		updated.setManager(upUser.getManager());

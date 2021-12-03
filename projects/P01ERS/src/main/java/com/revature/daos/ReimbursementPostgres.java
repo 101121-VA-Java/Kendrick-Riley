@@ -183,6 +183,7 @@ public class ReimbursementPostgres implements ReimbursementDao {
 	@Override
 	public List<Reimbursement> getByEmployeeId(int id) {
 		System.out.println("you at postgres employee by id line 185");
+		System.out.println(id);
 		List<Reimbursement> rmbs = new ArrayList<>();
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 			String sql = "select * from ers_reimbursement where reimb_author = ?";
@@ -204,6 +205,7 @@ public class ReimbursementPostgres implements ReimbursementDao {
 
 	@Override
 	public List<Reimbursement> viewPendingReimb(int authorId) {
+		System.out.println(authorId);
 		String sql = "select * from ERS_REIMBURSEMENT where reimb_status_id = 2;";
 		ArrayList<Reimbursement> pendingList = new ArrayList<Reimbursement>();
 
@@ -230,6 +232,35 @@ public class ReimbursementPostgres implements ReimbursementDao {
 		}
 		return pendingList;
 
+	}
+	@Override
+	public boolean edit(Reimbursement r) {
+		String sql = "update ers_reimbursement set reimb_amount = ?, reimb_submitted = ?, "
+				+ "reimb_resolved = ?, reimb_description = ?, reimb_author = ?, reimb_resolver = ?, "
+				+ "reimb_status_id = ?, reimb_type_id = ? where reimb_id = ?;";
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+			int rowsChanged = -1;
+			ps.setDouble(1, r.getAmount());
+			ps.setTimestamp(2, r.getSubmittedDate());
+			ps.setTimestamp(3, r.getResolvedDate());
+			ps.setString(4, r.getDescription());
+			ps.setInt(5, r.getAuthor());
+			ps.setInt(6, r.getResolver());
+			ps.setInt(7, r.getStatus_Id());
+			ps.setInt(8, r.getType_Id());
+
+			rowsChanged = ps.executeUpdate();
+
+			if (rowsChanged > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException | IOException c1) {
+			c1.printStackTrace();
+		}
+		return false;
 	}
 	}
 

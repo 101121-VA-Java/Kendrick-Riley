@@ -137,7 +137,7 @@ let addReimbursement = () => {
         if (xhr.readyState === 4) {
             if (xhr.status === 201) {
                 console.log('Reimbursement was successfully added!');
-
+                alert("Reimbursement was successfully added!");
             } else {
                 console.log('Reimbursement was not added...');
             }
@@ -154,81 +154,30 @@ function logout() {
 
 }
 
-let viewEmployeeInformation = () => {
-        let container = document.getElementById("main-content")
-        if (!container) return;
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
-                let response = xhr.response;
-                response = JSON.parse(response);
-                let { username, email, firstName, lastName } = response;
-                container.innerHTML =
-                    `<div id="main-content">
-                <form id="register-form" onsubmit="return false">
-                    Update your information
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="userNameHelp"
-                            placeholder="${username}">
-                        <small id="userNameHelp" class="form-text text-muted">
-                            Username must be 50 characters or less.
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Please enter your password, or enter a new one">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                            placeholder="${email}">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp"
-                            placeholder="${firstName}">
-                        <small id="firstNameHelp" class="form-text text-muted">
-                            First name must be 100 characters or less.
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp"
-                            placeholder="${lastName}">
-                        <small id="lastNameHelp" class="form-text text-muted">
-                            Last name must be 100 characters or less.
-                        </small>
-                    </div>
-                        <button class="btn btn-primary" onclick={updateEmployeeInfo()}>Update</button>
-                        <button class="btn btn-secondary" onclick={showEmployeeInfo()}>Refresh</button>
-                </form>
-                <div id="error-div"></div>
-            </div>`;
-            } else if (xhr.readyState === 4) {
-                document.getElementById("error-div").innerHTML = "came back at least.";
-            }
-        }
-        xhr.open('GET', `http://localhost:8080/users?id=${sessionStorage.token.split(":")[0]}`);
-        xhr.setRequestHeader("Authorization", sessionStorage.token);
-        xhr.send();
-    }
-    // dont works
 async function editOrUpdateEmployee() {
     let arr = sessionStorage.token.split(":");
     console.log(arr);
     let id = arr[0];
-    let role = arr[1];
+    //let role = arr[1];
+    var role = "";
     let userName = document.getElementById("username").value;
     let password = document.getElementById("password").value;
     let email = document.getElementById("email").value;
     let firstName = document.getElementById("firstName").value;
     let lastName = document.getElementById("lastName").value;
+
+    if (arr[1] == 3) {
+        var role = 'EMPLOYEE';
+    } else if (arr[1] == 2) {
+        var role = 'MANAGER';
+    } else if (arr[1] == 1) {
+        var role = 'ADMIN';
+    }
+
     let data = { id, role, userName, password, email, firstName, lastName };
     // The for...in statement iterates over all enumerable properties of an object 
     // that are keyed by strings (ignoring ones keyed by Symbols), including inherited enumerable properties.
+    console.log(data);
     for (const key in data)
         if (!data[key])
             return;
@@ -242,70 +191,9 @@ async function editOrUpdateEmployee() {
     });
 
     if (response.status == 200) {
-        window.location.reload();
+        //window.location.reload();
+        document.getElementById('error-div').innerHTML = 'Update Complete.'
     } else {
         document.getElementById('error-div').innerHTML = 'Unable to update employee.'
     }
-}
-
-let showEmployeeInfo = () => {
-    let container = document.getElementById("main-content")
-    if (!container) return;
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
-            let response = xhr.response;
-            response = JSON.parse(response);
-            let { username, email, firstName, lastName } = response;
-            container.innerHTML =
-                `<div id="main-content">
-                <form id="register-form" onsubmit="return false">
-                    Update your information
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="userNameHelp"
-                            placeholder="${username}">
-                        <small id="userNameHelp" class="form-text text-muted">
-                            Username must be 50 characters or less.
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Please enter your password, or enter a new one">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                            placeholder="${email}">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp"
-                            placeholder="${firstName}">
-                        <small id="firstNameHelp" class="form-text text-muted">
-                            First name must be 100 characters or less.
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp"
-                            placeholder="${lastName}">
-                        <small id="lastNameHelp" class="form-text text-muted">
-                            Last name must be 100 characters or less.
-                        </small>
-                    </div>
-                        <button class="btn btn-primary" onclick={updateEmployeeInfo()}>Update</button>
-                        <button class="btn btn-secondary" onclick={showEmployeeInfo()}>Refresh</button>
-                </form>
-                <div id="error-div"></div>
-            </div>`;
-        } else if (xhr.readyState === 4) {
-            document.getElementById("error-div").innerHTML = "came back at least.";
-        }
-    }
-    xhr.open('GET', `http://localhost:8080/users?id=${sessionStorage.token.split(":")[0]}`);
-    xhr.setRequestHeader("Authorization", sessionStorage.token);
-    xhr.send();
 }

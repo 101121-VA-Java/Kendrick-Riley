@@ -11,7 +11,7 @@ if (!token || token.split(':')[1] == '0') {
 
 function getPending() {
 
-    apiUrl = 'http://localhost:8080/reimbursement/pending';
+    apiUrl = 'http://localhost:8080/reimbursement/pending{author-Id}';
     populateTable();
 }
 
@@ -24,7 +24,9 @@ async function populateTable() {
             'Authorization': token
 
         }
-    });
+    });;
+    // let authorId = document.getElementById("${authorId}").value
+
 
     let r_response = await response.json();
     console.log(r_response);
@@ -35,6 +37,7 @@ async function populateTable() {
 
     // stop iterating over????/?
     for (r of r_response) {
+
 
         let row = document.createElement('tr');
 
@@ -65,4 +68,59 @@ async function populateTable() {
         tableBody1.appendChild(row);
     }
 
+}
+async function reimbursementApprove() {
+    let arr = sessionStorage.token.split(":");
+    console.log(arr);
+    let id = arr[0];
+
+    let id1 = document.getElementById("id").value;
+    let statusId = document.getElementById("statusId").value;
+    // let description = document.getElementById("description").value;
+
+
+    let data = { statusId };
+    console.log(data);
+    for (const key in data)
+        if (!data[key])
+            return;
+
+    let response = await fetch(`http://localhost:8080/reimbursement/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': sessionStorage.token
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.status == 200) {
+        //window.location.reload();
+        document.getElementById('error-div').innerHTML = 'Update Complete.'
+    } else {
+        document.getElementById('error-div').innerHTML = 'Unable to update employee.'
+    }
+}
+
+function changeReimbursement() {
+    let id = document.getElementById("id").value;
+
+    console.log(id);
+
+    for (const key in id)
+        if (!id[key])
+            return;
+    let xhr = new XMLHttpRequest();
+    let status_Id = 2;
+
+    xhr.open("PUT", 'http://localhost:8080/reimbursement/${id}');
+    console.log(id);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Hey! You're doing the thing!");
+        } else if (xhr.readyState === 4) {
+            console.log("Please fix the input sting @ ReimbursementController.java:67");
+        }
+    };
+    xhr.setRequestHeader("Authorization", sessionStorage.token);
+    xhr.send(JSON.stringify(status_Id));
 }

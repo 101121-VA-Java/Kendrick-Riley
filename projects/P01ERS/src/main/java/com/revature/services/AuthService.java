@@ -37,11 +37,11 @@ public class AuthService {
 	 */
 	public boolean checkPermission(String token, int role) {
 		String[] info = token.split(":");
-		
+
 		// 1 = admin, 2 = manager, 3 = employee 4 = manager and admin
 
 		int token_id = Integer.parseInt(info[1]);
-		
+
 		if (token_id == role) {
 			return true;
 		}
@@ -51,63 +51,9 @@ public class AuthService {
 			}
 			return false;
 		}
-		
+
 		return false;
-		
-	
 
-//		System.out.println(token);
-//		if (token == null) {
-//
-//			return false;
-//		}
-//
-//		String[] info = token.split(":");
-//
-//		int token_id = Integer.parseInt(info[0]);
-//
-//		int token_role = Integer.parseInt(info[1]);
-//		User principal = ud.getUserById(token_id);
-//		
-//		if (principal != null && token_role == principal.getRole().getRoleId()
-//				&& Arrays.asList(allowedRoles).contains(token_role)) {
-//			return true;
-//		}
-//		return false;
 	}
-
-//		if (principal != null && token_role == principal.getRoleId() && token_role == 1 || token_role == 2) {
-//
-//			return true;
-//		}
-
-//		return false;
-//	}
-//public boolean checkPermission(String token, Role... allowedRoles) {
-//		
-//		/*
-//		 * Behavior to identify user from token
-//		 */
-//		// this indicates that a user is not authenticated
-//		if(token == null) {
-//			return false;
-//		}
-//		
-//		String[] info = token.split(":"); 
-//		// retrieve user id
-//		int token_id = Integer.parseInt(info[0]);
-//		// retrieve user role
-//		Role token_role = Role.valueOf(info[1]);
-//		
-//		User principal = ud.getUserById(token_id);
-//		
-//		
-//		if(principal != null && token_role.equals(principal.getRole()) 	// Authentication of user: make sure user is logged in
-//				&& Arrays.asList(allowedRoles).contains(token_role)) {	// Authorization of user: make sure user has the permissions to use the functionality
-//			return true;
-//		}
-//		
-//		return false;
-//	}
 
 }

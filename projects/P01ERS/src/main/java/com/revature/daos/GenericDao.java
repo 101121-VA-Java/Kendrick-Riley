@@ -2,6 +2,8 @@ package com.revature.daos;
 
 import java.util.List;
 
+import com.revature.models.Reimbursement;
+
 public interface GenericDao<T> {
 	int add(T t);
 
@@ -12,5 +14,7 @@ public interface GenericDao<T> {
 	List<T> getAll();
 
 	int update(T t);
+
+	boolean edit(Reimbursement r);
 
 }

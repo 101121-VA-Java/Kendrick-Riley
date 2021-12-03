@@ -11,4 +11,5 @@ public interface ReimbursementDao extends GenericDao<Reimbursement>{
 	List<Reimbursement> viewPendingReimb(int authorId);	
 	List<Reimbursement> viewResolvedReimb(User u);
 	List<Reimbursement> getByEmployeeId(int id);
+	boolean edit(Reimbursement r);
 }

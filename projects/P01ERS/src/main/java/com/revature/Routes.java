@@ -41,11 +41,10 @@ public class Routes {
 				post(UserController::registerUser);
 				path("getAll", () -> {
 					get(UserController::getUsers);
+				});
 				path("{id}", () -> {
-					
 					get(UserController::getUserById);
 					put(UserController::updateUser);
-				});
 				});
 			});
 		});

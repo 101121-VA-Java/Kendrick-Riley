@@ -66,6 +66,8 @@ public class ReimbursementController {
 		}
 		int id = Integer.parseInt(ctx.pathParam("id"));
 		String str = ctx.body();
+		System.out.println(str);
+
 		int statusId = Integer.parseInt(str);
 		Reimbursement r = rs.getById(id);
 		r.setStatus_Id(statusId);
@@ -115,7 +117,8 @@ public class ReimbursementController {
 	public static void getPendingId(Context ctx) {
 		System.out.println("you at last pending id");
 		String token = ctx.header("Authorization");
-		if (as.checkPermission(token, 3)) {
+		if (as.checkPermission(token, 4)) {
+			
 			String[] info = token.split(":");
 			int userId = Integer.parseInt(info[0]);
 			List<Reimbursement> reim = rs.getReimbursementsByEmployeeId(userId);

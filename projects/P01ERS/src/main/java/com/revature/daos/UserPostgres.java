@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.models.Reimbursement;
 import com.revature.models.Role;
 import com.revature.models.User;
 import com.revature.models.UserRoles;
@@ -140,8 +141,34 @@ public class UserPostgres implements UserDao {
 
 	@Override
 	public User getUserById(int userId) {
-		System.out.println("At postgres line 143");
-		return null;
+		System.out.println("At postgres line 84");
+		User u = null;
+
+		try (Connection c = ConnectionUtil.getConnectionFromFile()) {
+			String sql = "select * from ers_users where ERS_USER_ID = ?;";
+
+			PreparedStatement ps = c.prepareStatement(sql);
+
+			ps.setInt(1, userId);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				u = new User(
+						rs.getInt("ERS_USER_ID"),
+						rs.getString("ERS_USERNAME"), 
+						rs.getString("ERS_PASSWORD"),
+						rs.getString("USER_FIRST_NAME"),
+						rs.getString("USER_LAST_NAME"),
+						rs.getString("USER_EMAIL"),
+						rs.getInt("USER_ROLE_ID"));
+
+			}
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+
+		return u;
 	}
 
 	@Override
@@ -182,4 +209,9 @@ public class UserPostgres implements UserDao {
 			}
 			return result;
 	    }
+	@Override
+	public boolean edit(Reimbursement r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

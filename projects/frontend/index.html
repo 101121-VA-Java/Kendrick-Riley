@@ -8,10 +8,12 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
+
 </head>
 
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,9 +27,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown link
@@ -45,10 +45,11 @@
     <hr>
 
     <form onsubmit="return false;">
+        <h3>Please enter Your Username and Password</h3>
         <div class="form-group form-inline">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username">
-            <small id="emailHelp" class="form-text text-muted"> We'll never share your email with anyone else.</small>
+            <small id="emailHelp" class="form-text text-muted"> We'll never share your Information with anyone else.</small>
         </div>
         <div class="form-group form-inline">
             <label for="password">Password</label>
@@ -56,6 +57,33 @@
         </div>
         <button type="submit" onclick="login()" class="btn btn-primary">Submit</button>
     </form>
+
+    <section>
+        <!-- Contact Section -->
+        <p>
+            <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+                <h3 class="w3-center">CONTACT</h3>
+                <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+                <div style="margin-top:48px">
+                    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Florida, US</p>
+                    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
+                    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: Rocksteady@gmail.com</p>
+                    <br>
+                    <form action="/action_page.php" target="_blank">
+                        <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+                        <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+                        <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+                        <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+                        <p>
+                            <button class="w3-button w3-black" type="submit">
+            <i class="fa fa-paper-plane"></i> SEND MESSAGE
+          </button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </p>
+    </section>
     <div id="error-div"></div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -64,5 +92,3 @@
 </body>
 
 </html>
-<!-- html -> on click -> function(do something) Then have to make a http request object then have 
-that object use on readystate and set equal function -->

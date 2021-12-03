@@ -143,8 +143,8 @@ public class Reimbursement {
 		return resolver;
 	}
 
-	public void setResolver(int resolver) {
-		this.resolver = resolver;
+	public void setResolver(int user) {
+		this.resolver = user;
 	}
 
 	public int getStatus_Id() {
