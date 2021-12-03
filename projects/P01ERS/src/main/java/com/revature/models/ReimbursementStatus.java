@@ -8,7 +8,7 @@ public class ReimbursementStatus {
 
 	public ReimbursementStatus() {
 		super();
-	
+
 	}
 
 	public ReimbursementStatus(int statusId, String status) {

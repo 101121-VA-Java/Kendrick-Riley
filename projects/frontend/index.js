@@ -40,20 +40,6 @@ function login() {
     xhr.send(requestBody);
 }
 
-function get(reimbursement, fn, roleString = "PENDING") {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
-            let response = xhr.response;
-            response = JSON.parse(response);
-            fn(response, roleString);
-        }
-    }
-    xhr.open('GET', `http://localhost:8080/reimbursement/${pending}`);
-    xhr.setRequestHeader("Authorization", sessionStorage.token);
-    xhr.send();
-}
-
 function showReimbursementsOfOneEmployee() {
     let searchId = document.getElementById('authorId').value;
     let xhr = new XMLHttpRequest();
@@ -103,8 +89,6 @@ function populateTable3() {
     tableBody1.appendChild(row);
 }
 
-
-// Works
 let addReimbursement = () => {
     if (!sessionStorage.token) return;
     let amount = document.getElementById("reimb-amount").value;
@@ -158,7 +142,7 @@ async function editOrUpdateEmployee() {
     let arr = sessionStorage.token.split(":");
     console.log(arr);
     let id = arr[0];
-    //let role = arr[1];
+
     var role = "";
     let userName = document.getElementById("username").value;
     let password = document.getElementById("password").value;
@@ -181,7 +165,7 @@ async function editOrUpdateEmployee() {
     for (const key in data)
         if (!data[key])
             return;
-        // put("users", sessionStorage.token.split(":")[0], data);
+
     let response = await fetch(`http://localhost:8080/users/${id}`, {
         method: 'PUT',
         headers: {

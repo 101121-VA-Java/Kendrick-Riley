@@ -16,7 +16,6 @@ public class Reimbursement {
 	private int status_Id;
 	private int type_Id;
 
-
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -68,18 +67,18 @@ public class Reimbursement {
 		this.amount = amount;
 		this.author = author;
 	}
+
 	public Reimbursement(int amount, Timestamp submittedDate, int status_Id, int type_Id) {
 		this.submittedDate = submittedDate;
 		this.status_Id = status_Id;
 		this.type_Id = type_Id;
-		this.amount = amount; 
+		this.amount = amount;
 	}
 
 	public Reimbursement(int id) {
 		super();
 		this.id = id;
 	}
-
 
 	public Reimbursement(int amount, Timestamp submittedDate, int status_Id, int author, int type_Id, int resolver) {
 		this.amount = amount;
@@ -88,7 +87,7 @@ public class Reimbursement {
 		this.author = author;
 		this.type_Id = type_Id;
 		this.resolver = resolver;
-		
+
 	}
 
 	public int getId() {

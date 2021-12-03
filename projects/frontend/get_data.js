@@ -48,9 +48,6 @@
              let USERNAMETd = document.createElement('td');
              USERNAMETd.innerHTML = u.userName;
 
-             //  let PASSWORDTd = document.createElement('td');
-             //  PASSWORDTd.innerHTML = u.lastName;
-
              let fNAMETd = document.createElement('td');
              fNAMETd.innerHTML = u.firstName;
 
@@ -66,7 +63,6 @@
 
              row.appendChild(USER_ID);
              row.appendChild(USERNAMETd);
-             //  row.appendChild(PASSWORDTd);
              row.appendChild(fNAMETd);
              row.appendChild(LNAMETd);
              row.appendChild(EMAILTd);

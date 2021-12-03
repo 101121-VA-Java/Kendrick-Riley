@@ -5,30 +5,26 @@ import org.apache.logging.log4j.Logger;
 
 import com.revature.exception.UserNotFoundException;
 
-
-
 public class LoggingDriver {
 	private static Logger log = LogManager.getRootLogger();
 
-		public static void main(String[] args) {
-			log.trace("This is a trace!");
-			log.debug("This is a debug!");
-			log.info("This is an info!");
-			log.warn("This is a warning!");
-			log.error("This is an error!");
-			log.fatal("This is fatal!");
-			
-			try {
-				throwErsException();
-			} catch (UserNotFoundException e) {
-				log.error("Exception was thrown and handled: " + e.getMessage());
-			}
-		}
+	public static void main(String[] args) {
+		log.trace("This is a trace!");
+		log.debug("This is a debug!");
+		log.info("This is an info!");
+		log.warn("This is a warning!");
+		log.error("This is an error!");
+		log.fatal("This is fatal!");
 
-		public static void throwErsException() throws UserNotFoundException {
-			throw new UserNotFoundException();
+		try {
+			throwErsException();
+		} catch (UserNotFoundException e) {
+			log.error("Exception was thrown and handled: " + e.getMessage());
 		}
+	}
 
+	public static void throwErsException() throws UserNotFoundException {
+		throw new UserNotFoundException();
+	}
 
 }
-

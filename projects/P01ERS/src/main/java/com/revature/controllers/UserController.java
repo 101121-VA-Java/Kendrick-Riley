@@ -15,9 +15,8 @@ public class UserController {
 	private static AuthService as = new AuthService();
 
 	public static void getUsers(Context ctx) {
-		System.out.println("here");
 		String token = ctx.header("Authorization");
-		
+
 		if (!as.checkPermission(token, 4)) {
 			ctx.status(HttpCode.UNAUTHORIZED);
 			return;
@@ -25,12 +24,12 @@ public class UserController {
 		List<User> users = us.getUsers();
 		ctx.json(users);
 		ctx.status(HttpCode.OK);
-	
+
 	}
 
 	public static void registerUser(Context ctx) {
-		int userId = us.addUser(ctx.bodyAsClass(User.class)); // should return new user id // successful, or null
-																// otherwise
+		int userId = us.addUser(ctx.bodyAsClass(User.class));
+
 		if (userId == -1) {
 			ctx.status(HttpCode.BAD_REQUEST);
 		} else {
@@ -46,17 +45,18 @@ public class UserController {
 			ctx.json(u);
 			ctx.status(HttpCode.OK);
 		} else {
-			System.out.println("get user by username Wrong 1 line 49 controller");
+			;
 			ctx.json("Error");
 			ctx.status(HttpCode.NOT_FOUND);
 		}
 	}
+
 	public static void getUserById(Context ctx) {
-		
+
 		int id = Integer.parseInt(ctx.pathParam("id"));
-		
+
 		User u = us.getUserById(id);
-		
+
 		if (u != null) {
 			ctx.json(u);
 			ctx.status(HttpCode.OK);
@@ -65,20 +65,18 @@ public class UserController {
 			ctx.status(HttpCode.NOT_FOUND);
 		}
 	}
+
 	public static void updateUser(Context ctx) {
-		System.out.println("update user line 68");
 		User updated = ctx.bodyAsClass(User.class);
-		System.out.println("update user line 68");
 		System.out.println(updated.getId());
 		User upUser = us.getUserById(updated.getId());
-//		updated.setManager(upUser.getManager());
-		if(us.updateUser(updated) <= 0){
+		if (us.updateUser(updated) <= 0) {
 			ctx.status(HttpCode.BAD_REQUEST);
 		} else {
 			ctx.status(HttpCode.OK);
 			System.out.println("Test222");
 		}
-	
+
 	}
 
 }

@@ -10,7 +10,7 @@
 
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <!-- <a class="navbar-brand" href="index.html"><img src="../images/revature-logo.png" style="height: 2.5em;"></a> -->
+
         <ul class="navbar-nav mr-auto" id="nav-left">
         </ul>
         <ul class="navbar-nav navbar-right" id="nav-right">
@@ -23,9 +23,7 @@
             <label class="btn btn-outline-secondary active" id="alluser1">
                 <input type="radio" name="options" checked> All Users
             </label>
-            <label class="btn btn-outline-secondary" id="myuser2">
-                <input type="radio" name="options"> My Users
-            </label>
+
         </div>
         <br>
         <table class="table table-hover">
@@ -33,7 +31,6 @@
                 <tr>
                     <th scope="col">USER_ID</th>
                     <th scope="col">USERNAME</th>
-                    <!-- <th scope="col">PASSWORD</th> -->
                     <th scope="col">fNAME</th>
                     <th scope="col">LNAME</th>
                     <th scope="col">EMAIL</th>
@@ -49,94 +46,11 @@
             </tbody>
         </table>
 
-        <div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="updateUserModal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"> <span id="modal-user-id">User id</span> : <span id="modal-user-name">User Name</span></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container align-content-center" id="loginForm">
-                            <form style="padding-top: 2.5em;">
-                                <div class="form-row justify-content-center">
-                                    <label>Manager:</label>
-                                </div>
-                                <div class="form-row justify-content-center">
-                                    <select class="form-control form-group col-md-5" id="employee-manager" name="manager">
-                                    </select>
-                                </div>
-                                <br>
-                                <div class="form-row justify-content-center">
-                                    <label>Role:</label>
-                                </div>
-                                <div class="form-row justify-content-center">
-                                    <select class="form-control form-group col-md-5" id="user-role" name="role">
-                                        <option value="BASIC_EMPLOYEE">Basic Employee</option>
-                                        <option value="MANAGER">Manager</option>
-                                        <option value="ADMIN">Admin</option>
-                                    </select>
-                                </div>
-                                <br>
-                                <div class="form-row justify-content-center">
-                                    <div style="color:red;" id="error-div"></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" id='update-button'>Update</button>
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer class="bg-light text-center fixed-bottom">
-        <div class="text-center p-3">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="get_data.js"></script>
 
-        </div>
-    </footer>
-
-
-
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="get_data.js"></script>
-    <!-- <script src="main.js"></script> -->
-    <!-- <script type="text/javascript"> -->
-    <!-- const rankingsBody = document.querySelector("#rankings-table > tbody");
-
-        function loadRankings() {
-            const request = new XMLHttpRequest();
-            request.open("get", "data/rankings.json");
-
-            request.onload = () => {
-                try {
-                    const json = Json.parse(request.responseText);
-
-                    populateRankings(json);
-                } catch (e) {
-                    console.warn("Could not load rankings! :(");
-                }
-
-            };
-            request.send();
-        }
-
-        function populateRankings(json) {
-            console.log(json);
-
-        }
-    </script> -->
 </body>
 
 </html>

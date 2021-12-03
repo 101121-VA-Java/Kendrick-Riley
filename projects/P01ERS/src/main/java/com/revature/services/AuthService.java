@@ -18,10 +18,7 @@ public class AuthService {
 		User principal = ud.getUserByUsername(username);
 
 		if (principal != null && principal.getPassword().equals(password)) {
-			/*
-			 * poor token implementation, for example's sake - based on this token, a user
-			 * can be authenticated when making a request - user-id:role
-			 */
+
 			token = principal.getId() + ":" + principal.getRoleId();
 		}
 

@@ -40,6 +40,7 @@ public class UserService {
 		}
 		return user;
 	}
+
 //	gets all users used by manager
 	public List<User> getUsers() {
 		System.out.println("here@service getusers");
@@ -55,7 +56,5 @@ public class UserService {
 		return ud.update(u);
 
 	}
-
-
 
 }

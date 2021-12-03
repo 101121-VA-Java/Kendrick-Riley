@@ -7,7 +7,7 @@ public class ReimbursementType {
 
 	public ReimbursementType() {
 		super();
-		
+
 	}
 
 	public ReimbursementType(String type) {
